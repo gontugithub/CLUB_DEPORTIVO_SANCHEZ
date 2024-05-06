@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-05-2024 a las 13:25:16
+-- Tiempo de generación: 06-05-2024 a las 13:39:20
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -73,7 +73,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectDeportes_ID` (IN `_id` INT)  
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectDeportistas` ()   SELECT * FROM deportistas$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectDeportistas_Filtro` (IN `_filtro` VARCHAR(50))   SELECT * FROM deportistas where dta_nombre like concat("%",_filtro,"%")$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectDeportistas_Filtro` (IN `_filtro` VARCHAR(50))   SELECT * FROM deportistas as d WHERE 
+d.dta_nombre LIKE concat("%",_filtro,"%") OR
+d.dta_telefono LIKE concat("%",_filtro,"%") OR
+d.dta_fecha_alta LIKE concat("%",_filtro,"%") OR
+d.dta_fecha_baja LIKE concat("%",_filtro,"%")$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Ver_Anuncios` ()   SELECT * FROM anuncios$$
 
