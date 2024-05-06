@@ -1,0 +1,201 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 80px 1fr 40px;
+    grid-template-areas: 
+    "zh"
+    "zn"
+    "zs"
+    "zf";
+}
+
+/* HEADER */
+
+header{
+    grid-area: zh;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* LOS DIVS DEL HEADER */
+
+#logo{
+    width: 50%;
+}
+
+#logo > img{
+    width: 200px;
+
+}
+
+#logo:hover{
+    cursor: pointer;
+}
+
+#login{
+    padding-right: 40px;
+    display: flex;
+    justify-content: right;
+    width: 30%;
+}
+
+#login:hover{
+    cursor: pointer;
+}
+
+#login > img{
+    width: 35px;
+}
+
+/* NAV */
+
+nav{
+    grid-area: zn;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+nav > div {
+    margin: 20px;
+    font-size: 17px;
+}
+
+/*SECTION*/
+
+section {
+    grid-area: zs;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+/* MODAL LOGIN */
+
+#modal_login{
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+#login_formulario{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: auto;
+}
+
+#titulo_login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 150px;
+    font-size: 30px;
+    font-weight: 555;
+}
+
+.login_datos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    font-size: 20px;
+    font-weight: 555;
+}
+
+.cajon_input{
+    width: 100%;
+    margin: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#alias_login{
+    width: 40%;
+}
+
+#password_login{
+    width: 40%;
+
+}
+
+.div_boton_login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+}
+
+#boton_login{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 150px;
+    height: 30px;
+    margin: 20px;
+}
+
+/* MODAL DEPORTES */
+
+#modal_deportes{
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+/* FORMULARIOS */
+
+#formularios{
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+/* FOOTER */
+
+footer{
+    grid-area: zf;
+    background-color: black; 
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
