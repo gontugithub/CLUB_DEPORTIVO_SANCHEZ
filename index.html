@@ -75,6 +75,10 @@
         </div>
         <!-- MODAL DEPORTES -->
         <div id="modal_deportes" onload="fMostrarDeportes()">
+            <div id="titulo_insertar_dte">¿Quieres insertar un nuevo deporte?</div>
+            <div class="div_boton">
+                <div class="boton" onclick="fMostrarFormularios('#crear_deporte')">Abrir formulario</div>
+               </div>
             <div id="deportes">
             </div>
         </div>
@@ -93,8 +97,8 @@
                     <div class="cajon_input">
                         <input type="password" name="" id="password_login"> 
                      </div>
-                    <div class="div_boton_login">
-                        <div id="boton_login" onclick="fLogin()">Acceder</div>
+                    <div class="div_boton">
+                        <div class="boton" onclick="fLogin()">Acceder</div>
                        </div>
                     <div id="div_error_login"></div>
         </div>

@@ -20,11 +20,13 @@ function fMostrarModal(nombre_modal_con_almohadilla) {
     });
 
     document.querySelector(nombre_modal_con_almohadilla).style.display = "flex";
+
 }
 
 // PARA MOSTRAR LOS FORMULARIOS
 
 function fMostrarFormularios(nombre_formulario_con_almohadilla){
+
     
     console.log(nombre_formulario_con_almohadilla);
 
@@ -37,6 +39,11 @@ function fMostrarFormularios(nombre_formulario_con_almohadilla){
     });
 
     document.querySelector(nombre_formulario_con_almohadilla).style.display = "flex";
+
+    // Mostramos la modal
+    
+    document.querySelector("#formularios").style.display = "flex";
+
 }
 
 // PARA EL LOGIN
@@ -93,5 +100,7 @@ function fLogin() {
 // MOSTRAR DEPORTES
 
 function fMostrarDeportes(){
+
+
     
 }
