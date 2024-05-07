@@ -101,6 +101,52 @@ function fLogin() {
 
 function fMostrarDeportes(){
 
+    let sql = "Select * FROM deportes ORDER BY dte_nombre ASC";
+    const URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql;
+
+    fetch(URL)
+    .then((response) => response.json())
+    .then((data) => {
+        console.log("DEPORTES", data);
+
+        let html =`<table>`;
+        html+=`<thead>`;
+            html+=`<tr>`;
+                html+=`<th>Nombre</th>`;
+                html+=`<th>Fecha alta</th>`;
+                html+=`<th>Fecha baja</th>`;
+                html+=`<th>Acciones</th>`;
+            html+=`</tr>`;
+        html+=`</thead>`;
+        html+=`<tbody>`;
+
+        data.datos.forEach(item => {
+
+        html+=`<tr>`;
+        html+=`<td>${item.dte_nombre}</td>`;
+        html+=`<td>${item.dte_fecha_alta}</td>`;
+
+        if (item.dte_fecha_baja == null) {
+        html+=`<td> -- </td>`;
+        } else {
+        html+=`<td>${item.dte_fecha_baja}</td>`;
+        }
+        html += `<td><span onclick="fBorrarDeporte('${item.dte_id}')"><i class="fas fa-trash" title="Borrar ${item.dte_nombre}"></i></span></td>`
+        html += `<td><span onclick="fMostrarFormulario('#modificar_movimiento','${item.dte_id}')><i class="fas fa-edit" title="Modificar ${item.dte_nombre}"></i></span></td>`
+        html+=`</tr>`
+
+        });
+
+        html+=`</tbody>`;
+        html+= `</table>`;
+
+        document.querySelector("#deportes").innerHTML = html;
+    })
+
+
+    .finally(()=>{
+      fMostrarModal('#modal_deportes');
+    })
 
     
 }

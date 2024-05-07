@@ -1,42 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="assets/scripts/scripts.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="assets/styles/style.css">
     <link rel="stylesheet" href="assets/styles/modal.css">
+    <script src="assets/fontawesome-free-5.15.4-web/js/all.js"></script>
     <title>CLUB DEPORTIVO SANCHEZ</title>
 </head>
+
 <body>
+    <!-- MODAL LOGIN -->
+    <div id="modal_login">
+        <div id="titulo_login">Accede a tu cuenta</div>
+        <div class="login_datos">Username</div>
+        <div class="cajon_input">
+            <input type="text" name="" id="alias_login">
+        </div>
+        <div class="login_datos">Contraseña</div>
+        <div class="cajon_input">
+            <input type="password" name="" id="password_login">
+        </div>
+        <div class="div_boton">
+            <div class="boton" onclick="fLogin()">Acceder</div>
+        </div>
+        <div id="div_error_login"></div>
+    </div>
     <div id="formularios">
         <div id="crear_deporte">
             <div class="titulo">Nombre del nuevo deporte</div>
             <input type="text" id="nombre_deporte">
             <div class="titulo">Fecha alta</div>
             <div class="fecha">
-                <input type="date" name="" id="fecha_alta_deporte"> 
+                <input type="date" name="" id="fecha_alta_deporte">
             </div>
             <div class="titulo">Fecha baja</div>
             <div class="fecha">
-                <input type="date" name="" id="fecha_baja_deporte"> 
+                <input type="date" name="" id="fecha_baja_deporte">
             </div>
         </div>
         <div id="crear_deportista">
             <div class="titulo">Nombre del nuevo deportista</div>
             <input type="text" id="nombre_deportista">
-            <div class="titulo">Password</div>     
+            <div class="titulo">Password</div>
             <input type="text" id="password_deportista">
             <div class="titulo">Teléfono</div>
             <input type="text" id="telefono_deportista">
             <div class="titulo">Fecha alta</div>
             <div class="fecha">
-                <input type="date" name="" id="fecha_alta_deportista"> 
+                <input type="date" name="" id="fecha_alta_deportista">
             </div>
             <div class="titulo">Fecha baja</div>
             <div class="fecha">
-                <input type="date" name="" id="fecha_baja_deportista"> 
+                <input type="date" name="" id="fecha_baja_deportista">
             </div>
         </div>
         <div id="crear_anuncio">
@@ -44,11 +64,11 @@
             <input type="text" id="texto_anuncio">
             <div class="titulo">Fecha alta</div>
             <div class="fecha">
-                <input type="date" name="" id="fecha_alta_anuncio"> 
+                <input type="date" name="" id="fecha_alta_anuncio">
             </div>
             <div class="titulo">Fecha baja</div>
             <div class="fecha">
-                <input type="date" name="" id="fecha_baja_anuncio"> 
+                <input type="date" name="" id="fecha_baja_anuncio">
             </div>
         </div>
         <div id="modificar_deporte"></div>
@@ -60,7 +80,7 @@
         <div id="login" onclick="fMostrarModal('#modal_login')"><img src="assets/img/usuario.png" alt=""></div>
     </header>
     <nav>
-        <div onclick="fMostrarModal('#modal_deportes')">Deportes</div>
+        <div onclick="fMostrarDeportes()">Deportes</div>
         <div onclick="fMostrarModal('#modal_deportistas')">Deportistas</div>
         <div onclick="fMostrarModal('#modal_anuncios')">Anuncios</div>
     </nav>
@@ -70,39 +90,31 @@
 
         </div>
         <!-- MODAL DEPORTISTAS -->
-        <div id="modal_deportistas">      
+        <div id="modal_deportistas">
             <div id="deportistas"></div>
         </div>
         <!-- MODAL DEPORTES -->
-        <div id="modal_deportes" onload="fMostrarDeportes()">
+        <div id="modal_deportes">
             <div id="titulo_insertar_dte">¿Quieres insertar un nuevo deporte?</div>
             <div class="div_boton">
                 <div class="boton" onclick="fMostrarFormularios('#crear_deporte')">Abrir formulario</div>
-               </div>
+            </div>
+            <div id="titulo_insertar_dte">Te ayudamos a filtrar</div>
+            <div class="cajon_input">
+                <input type="text" name="" id="filtro_deportes">
+            </div>
             <div id="deportes">
+
             </div>
         </div>
         <!-- MODAL ANUNCIOS -->
         <div id="modal_anuncios">
             <div id="anuncios"></div>
         </div>
-        <!-- MODAL LOGIN -->
-        <div id="modal_login">
-                    <div id="titulo_login">Accede a tu cuenta</div>
-                    <div class="login_datos">Username</div>
-                    <div class="cajon_input">
-                       <input type="text" name="" id="alias_login"> 
-                    </div>
-                    <div class="login_datos">Contraseña</div>
-                    <div class="cajon_input">
-                        <input type="password" name="" id="password_login"> 
-                     </div>
-                    <div class="div_boton">
-                        <div class="boton" onclick="fLogin()">Acceder</div>
-                       </div>
-                    <div id="div_error_login"></div>
-        </div>
     </section>
     <footer></footer>
 </body>
+
 </html>
+
+<span></span>

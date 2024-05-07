@@ -94,6 +94,8 @@ section {
     justify-content: center;
     align-items: center;
     background-color: white;
+    position: absolute;
+    top: 0;
 }
 
 #login_formulario{
