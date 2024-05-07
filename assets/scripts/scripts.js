@@ -150,3 +150,62 @@ function fMostrarDeportes(){
 
     
 }
+
+// MOSTRAR DEPORTISTAS
+
+function fMostrarDeportes(){
+
+    let sql = "call SelectDeportistas()";
+    const URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql;
+
+    fetch(URL)
+    .then((response) => response.json())
+    .then((data) => {
+
+        console.log("DEPORTISTAS", data);
+
+        let html = "";
+        html += `  <tbody>`
+        html += `   <tr>`
+        html += `    <th>DEPORTISTAS</th>`
+        html += `    <th>CONTRASEÑA</th>`
+        html += `    <th>TELEFONO</th>`
+        html += `    <th>FECHA ALTA</th>`
+        html += `    <th>FECHA BAJA</th>`
+        html += `    <th>ACCIONES ADMIN</th>`
+        html += `   </tr>`
+
+        data.datos.forEach(item => {
+
+           html += `   <tr>`
+           html += `      <td>${item.dta_nombre}</td>`
+           html += `      <td>${item.dta_password}</td>` 
+           html += `      <td>${item.dta_telefono}</td>`
+           html += `      <td>${item.dta_fecha_alta}</td>` 
+
+            if (item.dte_fecha_baja == null) {
+            html += `      <td>  -  -  </td>` 
+            } else {
+            html += `      <td>${item.dta_fecha_baja}</td>` 
+            }
+           html += `       <td class="acciones_admin"><span><i class="fas fa-trash"></i>&nbsp;&nbsp;<i class="fas fa-edit"></i></span></td>`
+           html += `   </tr>`
+          
+
+        });
+
+        html += `  </tbody>`
+        console.log(html)
+        document.querySelector("#tabla_deportistas").innerHTML = html;
+
+    })
+
+    .finally(()=>{
+        fMostrarModal('#modal_deportistas');
+      })
+
+
+
+
+
+}

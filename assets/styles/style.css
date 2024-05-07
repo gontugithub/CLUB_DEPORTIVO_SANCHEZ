@@ -180,6 +180,10 @@ section {
 }
 
 #modal_deportistas{
+    display: flex;
+}
+
+#contenedor_modal_deportistas{
     height: 100%;
     width: 100%;
     display: block;
@@ -188,9 +192,9 @@ section {
 }
 
 .div_insertar{
-    margin: 10px auto;
-    width: 20%;
-   height: auto;
+   margin: auto;
+   width: 20%;
+   height: 70px;
    text-align: center;
    padding: 5px;
 }
@@ -201,10 +205,15 @@ section {
 
 .div_tabla{
     background-color: peachpuff;
-    margin: 10px auto;
-    width: 92%;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    width: 96%;
     font-size: 12px;
 
+}
+
+.fas fa-trash{
+    
 }
 
 th,td {

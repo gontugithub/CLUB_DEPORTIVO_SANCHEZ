@@ -81,7 +81,7 @@
     </header>
     <nav>
         <div onclick="fMostrarDeportes()">Deportes</div>
-        <div onclick="fMostrarModal('#modal_deportistas')">Deportistas</div>
+        <div onclick="fMostrarDeportes()">Deportistas</div>
         <div onclick="fMostrarModal('#modal_anuncios')">Anuncios</div>
     </nav>
     <section>
@@ -91,34 +91,19 @@
         </div>
         <!-- MODAL DEPORTISTAS -->
         <div id="modal_deportistas" class="modal">
-            <div class="div_insertar">
-                <div class="texto_insertar">INSERTAR</div>
-                <div class="insertar">+</div>
-            </div>
-            <div class="div_tabla">
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>DEPORTISTAS</th>
-                            <th>CONTRASEÑA</th>
-                            <th>TELEFONO</th>
-                            <th>FECHA ALTA</th>
-                            <th>FECHA BAJA</th>
-                            <th>ACCIONES ADMIN</th>
-                        </tr>
-                        <tr>
-                            <td>GONZALO</td>
-                            <td>12344323636275547fdfdasf123</td>
-                            <td>691457778</td>
-                            <td>2024-06-02</td>
-                            <td>NULL</td>
-                            <td class="acciones_admin"><span><i class="fas fa-trash"></i>&nbsp;&nbsp;<i class="fas fa-edit"></i></span></td>
+            <div id="contenedor_modal_deportistas">
 
-                            <!-- <span onclick="fBorrarDeporte('${item.dte_id}')"><i class="fas fa-trash" title="Borrar ${item.dte_nombre}"></i></span> -->
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="div_insertar">
+                    <div class="texto_insertar">INSERTAR</div>
+                    <div class="insertar">+</div>
+                </div>
+                <div class="div_tabla">
+                    <table id="tabla_deportistas">
+                    </table>
+                </div>
+                
             </div>
+            
         </div>
         <!-- MODAL DEPORTES -->
         <div id="modal_deportes">
