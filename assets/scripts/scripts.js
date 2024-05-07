@@ -1,6 +1,7 @@
 // VARIABLES GLOBALES
 
 let id;
+let idDeporte;
 
 // PARA MOSTRAR LOS MODALES
 
@@ -132,7 +133,7 @@ function fMostrarDeportes(){
         html+=`<td>${item.dte_fecha_baja}</td>`;
         }
         html += `<td><span onclick="fBorrarDeporte('${item.dte_id}')"><i class="fas fa-trash" title="Borrar ${item.dte_nombre}"></i></span></td>`
-        html += `<td><span onclick="fMostrarFormulario('#modificar_movimiento','${item.dte_id}')><i class="fas fa-edit" title="Modificar ${item.dte_nombre}"></i></span></td>`
+        html += `<td><span onclick="fMostrarFormulario('#modificar_deporte','${item.dte_id}')"><i class="fas fa-edit" title="Modificar ${item.dte_nombre}"></i></span></td>`
         html+=`</tr>`
 
         });
