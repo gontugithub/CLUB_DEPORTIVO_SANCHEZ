@@ -179,6 +179,54 @@ section {
     background-color: white;
 }
 
+#modal_deportistas{
+    height: 100%;
+    width: 100%;
+    display: block;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.div_insertar{
+    margin: 10px auto;
+    width: 20%;
+   height: auto;
+   text-align: center;
+   padding: 5px;
+}
+
+.insertar{
+    font-size: 30px;
+}
+
+.div_tabla{
+    background-color: peachpuff;
+    margin: 10px auto;
+    width: 92%;
+    font-size: 12px;
+
+}
+
+th,td {
+  padding: 10px;
+  text-align: center;
+}
+
+table{
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #8b8b8b;
+  }
+  
+tbody tr:nth-child(even) {
+    background-color: #c7c7c7;
+  }
+
+
 /* FORMULARIOS */
 
 #formularios{
@@ -202,3 +250,4 @@ footer{
     justify-content: center;
     align-items: center;
 }
+
