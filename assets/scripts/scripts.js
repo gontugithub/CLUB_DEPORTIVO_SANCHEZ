@@ -21,7 +21,6 @@ function fMostrarModal(nombre_modal_con_almohadilla) {
     });
 
     document.querySelector(nombre_modal_con_almohadilla).style.display = "flex";
-
 }
 
 // PARA MOSTRAR LOS FORMULARIOS
@@ -44,6 +43,7 @@ function fMostrarFormularios(nombre_formulario_con_almohadilla){
     // Mostramos la modal
     
     document.querySelector("#formularios").style.display = "flex";
+
 
 }
 
@@ -113,10 +113,10 @@ function fMostrarDeportes(){
         let html =`<table>`;
         html+=`<thead>`;
             html+=`<tr>`;
-                html+=`<th>Nombre</th>`;
-                html+=`<th>Fecha alta</th>`;
-                html+=`<th>Fecha baja</th>`;
-                html+=`<th>Acciones</th>`;
+                html+=`<th>NOMBRE</th>`;
+                html+=`<th>FECHA ALTA</th>`;
+                html+=`<th>FECHA BAJA</th>`;
+                html+=`<th>ACCIONES ADMIN</th>`;
             html+=`</tr>`;
         html+=`</thead>`;
         html+=`<tbody>`;
@@ -133,7 +133,7 @@ function fMostrarDeportes(){
         html+=`<td>${item.dte_fecha_baja}</td>`;
         }
         html += `<td><span onclick="fBorrarDeporte('${item.dte_id}')"><i class="fas fa-trash" title="Borrar ${item.dte_nombre}"></i></span></td>`
-        html += `<td><span onclick="fMostrarFormulario('#modificar_deporte','${item.dte_id}')"><i class="fas fa-edit" title="Modificar ${item.dte_nombre}"></i></span></td>`
+        html += `<td><span onclick="fMostrarFormulario('#modificar_deporte')"><i class="fas fa-edit" title="Modificar ${item.dte_nombre}"></i></span></td>`
         html+=`</tr>`
 
         });
@@ -142,6 +142,7 @@ function fMostrarDeportes(){
         html+= `</table>`;
 
         document.querySelector("#deportes").innerHTML = html;
+
     })
 
 
