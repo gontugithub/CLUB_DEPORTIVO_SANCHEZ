@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="assets/scripts/scripts.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="assets/styles/style.css">
     <link rel="stylesheet" href="assets/styles/modal.css">
     <title>CLUB DEPORTIVO SANCHEZ</title>
 </head>
+
 <body>
     <div id="formularios">
         <div id="crear_deporte">
@@ -16,27 +19,27 @@
             <input type="text" id="nombre_deporte">
             <div class="titulo">Fecha alta</div>
             <div class="fecha">
-                <input type="date" name="" id="fecha_alta_deporte"> 
+                <input type="date" name="" id="fecha_alta_deporte">
             </div>
             <div class="titulo">Fecha baja</div>
             <div class="fecha">
-                <input type="date" name="" id="fecha_baja_deporte"> 
+                <input type="date" name="" id="fecha_baja_deporte">
             </div>
         </div>
         <div id="crear_deportista">
             <div class="titulo">Nombre del nuevo deportista</div>
             <input type="text" id="nombre_deportista">
-            <div class="titulo">Password</div>     
+            <div class="titulo">Password</div>
             <input type="text" id="password_deportista">
             <div class="titulo">Teléfono</div>
             <input type="text" id="telefono_deportista">
             <div class="titulo">Fecha alta</div>
             <div class="fecha">
-                <input type="date" name="" id="fecha_alta_deportista"> 
+                <input type="date" name="" id="fecha_alta_deportista">
             </div>
             <div class="titulo">Fecha baja</div>
             <div class="fecha">
-                <input type="date" name="" id="fecha_baja_deportista"> 
+                <input type="date" name="" id="fecha_baja_deportista">
             </div>
         </div>
         <div id="crear_anuncio">
@@ -44,11 +47,11 @@
             <input type="text" id="texto_anuncio">
             <div class="titulo">Fecha alta</div>
             <div class="fecha">
-                <input type="date" name="" id="fecha_alta_anuncio"> 
+                <input type="date" name="" id="fecha_alta_anuncio">
             </div>
             <div class="titulo">Fecha baja</div>
             <div class="fecha">
-                <input type="date" name="" id="fecha_baja_anuncio"> 
+                <input type="date" name="" id="fecha_baja_anuncio">
             </div>
         </div>
         <div id="modificar_deporte"></div>
@@ -70,15 +73,47 @@
 
         </div>
         <!-- MODAL DEPORTISTAS -->
-        <div id="modal_deportistas">      
-            <div id="deportistas"></div>
+        <div id="modal_deportistas" class="modal">
+            <div class="div_insertar">
+                <div class="texto_insertar">INSERTAR</div>
+                <div class="insertar">+</div>
+            </div>
+            <div class="div_tabla">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>DEPORTISTAS</th>
+                            <th>CONTRASEÑA</th>
+                            <th>TELEFONO</th>
+                            <th>FECHA ALTA</th>
+                            <th>FECHA BAJA</th>
+                            <th class="acciones_admin">ACCIONES ADMIN</th>
+                        </tr>
+                        <tr>
+                            <td>GONZALO</td>
+                            <td>12344323636275547fdfdasf123</td>
+                            <td>691457778</td>
+                            <td>2024-06-02</td>
+                            <td>NULL</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+
+
+
+
+
+
+
         </div>
         <!-- MODAL DEPORTES -->
         <div id="modal_deportes" onload="fMostrarDeportes()">
             <div id="titulo_insertar_dte">¿Quieres insertar un nuevo deporte?</div>
             <div class="div_boton">
                 <div class="boton" onclick="fMostrarFormularios('#crear_deporte')">Abrir formulario</div>
-               </div>
+            </div>
             <div id="deportes">
             </div>
         </div>
@@ -88,21 +123,22 @@
         </div>
         <!-- MODAL LOGIN -->
         <div id="modal_login">
-                    <div id="titulo_login">Accede a tu cuenta</div>
-                    <div class="login_datos">Username</div>
-                    <div class="cajon_input">
-                       <input type="text" name="" id="alias_login"> 
-                    </div>
-                    <div class="login_datos">Contraseña</div>
-                    <div class="cajon_input">
-                        <input type="password" name="" id="password_login"> 
-                     </div>
-                    <div class="div_boton">
-                        <div class="boton" onclick="fLogin()">Acceder</div>
-                       </div>
-                    <div id="div_error_login"></div>
+            <div id="titulo_login">Accede a tu cuenta</div>
+            <div class="login_datos">Username</div>
+            <div class="cajon_input">
+                <input type="text" name="" id="alias_login">
+            </div>
+            <div class="login_datos">Contraseña</div>
+            <div class="cajon_input">
+                <input type="password" name="" id="password_login">
+            </div>
+            <div class="div_boton">
+                <div class="boton" onclick="fLogin()">Acceder</div>
+            </div>
+            <div id="div_error_login"></div>
         </div>
     </section>
     <footer></footer>
 </body>
+
 </html>
