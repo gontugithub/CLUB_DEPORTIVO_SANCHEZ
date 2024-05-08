@@ -149,7 +149,7 @@ function fMostrarDeportes(){
 
 
     .finally(()=>{
-      fMostrarModal("'#modal_deportes'");
+      fMostrarModal("#modal_deportes");
     })
 
     
