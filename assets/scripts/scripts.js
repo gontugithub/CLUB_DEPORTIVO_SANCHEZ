@@ -25,12 +25,12 @@ function fMostrarModal(nombre_modal_con_almohadilla) {
 
 // PARA MOSTRAR LOS FORMULARIOS
 
-function fMostrarFormularios(nombre_formulario_con_almohadilla){
+function fMostrarFormularios(formulario){
 
     
-    console.log(nombre_formulario_con_almohadilla);
+    console.log(formulario);
 
-    let lista_formularios = document.querySelectorAll("#formularios > div");
+    let lista_formularios = document.querySelectorAll("#modal_formularios > div");
 
 
     lista_formularios.forEach(item => {
@@ -38,11 +38,11 @@ function fMostrarFormularios(nombre_formulario_con_almohadilla){
         console.log(item)
     });
 
-    document.querySelector(nombre_formulario_con_almohadilla).style.display = "flex";
+    document.querySelector(formulario).style.display = "block";
 
     // Mostramos la modal
     
-    document.querySelector("#formularios").style.display = "flex";
+    fMostrarModal("#modal_formularios");
 
 
 }
@@ -149,7 +149,7 @@ function fMostrarDeportes(){
 
 
     .finally(()=>{
-      fMostrarModal('#modal_deportes');
+      fMostrarModal("'#modal_deportes'");
     })
 
     
@@ -189,16 +189,51 @@ function fMostrarDeportistas(){
            html += `      <td>${item.dta_telefono}</td>`
            html += `      <td>${item.dta_fecha_alta}</td>` 
 
-            if (item.dte_fecha_baja == null) {
+           if(item.dte_fecha_baja == null){
             html += `      <td>  -  -  </td>` 
-            } else {
-            html += `      <td>${item.dta_fecha_baja}</td>` 
+           } else{
+            html += `      <td>${item.dta_fecha_baja}</td>`
+           }
+
+            if (item.dte_fecha_baja == null && item.dta_fecha_alta == null) {
+            
+            html += `       <td class="acciones_admin">
+           <span onclick="fPrepararFormDeportistas('eliminar', '${item.dta_id}','${item.dta_nombre}','${item.dta_password}','${item.dta_telefono}', '', '')">
+           <i class="fas fa-trash"></i></span>&nbsp;&nbsp;
+           <span onclick="fPrepararFormDeportistas('modificar', '${item.dta_id}','${item.dta_nombre}','${item.dta_password}','${item.dta_telefono}', '', '')">
+           <i class="fas fa-edit"></i></span></td>`
+
+            } else if (item.dte_fecha_baja == null){
+
+                html += `       <td class="acciones_admin">
+           <span onclick="fPrepararFormDeportistas('eliminar', '${item.dta_id}','${item.dta_nombre}','${item.dta_password}','${item.dta_telefono}', '', '${item.dta_fecha_alta}')">
+           <i class="fas fa-trash"></i></span>&nbsp;&nbsp;
+           <span onclick="fPrepararFormDeportistas('modificar', '${item.dta_id}','${item.dta_nombre}','${item.dta_password}','${item.dta_telefono}', '', '${item.dta_fecha_alta}')">
+           <i class="fas fa-edit"></i></span></td>`
+            
+
+            } else if (item.dte_fecha_alta == null){
+
+                html += `       <td class="acciones_admin">
+           <span onclick="fPrepararFormDeportistas('eliminar', '${item.dta_id}','${item.dta_nombre}','${item.dta_password}','${item.dta_telefono}', '${item.dta_fecha_baja}', '')">
+           <i class="fas fa-trash"></i></span>&nbsp;&nbsp;
+           <span onclick="fPrepararFormDeportistas('modificar', '${item.dta_id}','${item.dta_nombre}','${item.dta_password}','${item.dta_telefono}', '${item.dta_fecha_baja}', '')">
+           <i class="fas fa-edit"></i></span></td>`
+
+
+            } else{
+                html += `       <td class="acciones_admin">
+           <span onclick="fPrepararFormDeportistas('eliminar', '${item.dta_id}','${item.dta_nombre}','${item.dta_password}','${item.dta_telefono}', '${item.dta_fecha_baja}', '${item.dta_fecha_alta}')">
+           <i class="fas fa-trash"></i></span>&nbsp;&nbsp;
+           <span onclick="fPrepararFormDeportistas('modificar', '${item.dta_id}','${item.dta_nombre}','${item.dta_password}','${item.dta_telefono}', '${item.dta_fecha_baja}', '${item.dta_fecha_alta}')">
+           <i class="fas fa-edit"></i></span></td>`
             }
-           html += `       <td class="acciones_admin"><span><i class="fas fa-trash"></i>&nbsp;&nbsp;<i class="fas fa-edit"></i></span></td>`
+           
            html += `   </tr>`
+
           
 
-        });
+        })
 
         html += `  </tbody>`
         console.log(html)
@@ -209,16 +244,39 @@ function fMostrarDeportistas(){
     .finally(()=>{
         fMostrarModal('#modal_deportistas');
       })
-
-
-
-
-
 }
 
 function fPrepararFormDeportistas(accion_formulario, dta_id, dta_nombre, dta_password, dta_telefono, dta_fcha_baja, dta_fcha_alta) {
-    
+
+    console.log(dta_fcha_baja)
+    console.log(dta_fcha_alta)
+
+    let lista_label = document.querySelectorAll("#formulario_deportistas > label");
+    let lista_input = document.querySelectorAll("#formulario_deportistas > input");
+
+    console.log(lista_input)
+    console.log(lista_label)
+
+    // MUESTRA TODOS LOS LABEL
+
+    lista_label.forEach(item => {
+
+        item.style.display = "block"
+        
+    });
+
+    // MUESTRA TODOS LOS INPUTS
+
+    lista_input.forEach(item => {
+
+        item.style.display = "block"
+        
+    });
+
+
     // GUARDAMOS EL ID EN EL INPUT OCULTO EN EL CASO DE QUE QUERAMOS UTILIZARLO
+    document.querySelector("#l_dta_id").style.display = "none";
+    document.querySelector("#dta_id").style.display = "none";
     document.querySelector("#dta_id").value = dta_id;
 
     // SI HUBIERA DADO ERROR VACIAMOS EL MENSJAE DE ERROR ANTERIOR
@@ -229,27 +287,54 @@ function fPrepararFormDeportistas(accion_formulario, dta_id, dta_nombre, dta_pas
     document.querySelector("#dta_nombre").value = dta_nombre;
     document.querySelector("#dta_password").value = dta_password;
     document.querySelector("#dta_telefono").value = dta_telefono;
+    document.querySelector("#dta_fcha_baja").value = dta_fcha_baja;
     document.querySelector("#dta_fcha_alta").value = dta_fcha_alta;
-    document.querySelector("#dta_fcha_baja").value = dta_fcha_alta;
+   
     //Analizar el para_que
 
-    if (para_que == 'insertar') {
+    if (accion_formulario == 'insertar') {
         document.querySelector("#dta_add").style.display = "block";
         document.querySelector("#dta_mod").style.display = "none";
         document.querySelector("#dta_del").style.display = "none";
+        document.querySelector("#l_dta_fcha_alta").style.display = "none";
+        document.querySelector("#dta_fcha_alta").style.display = "none";
     }
 
-    if (para_que == 'modificar') {
+    if (accion_formulario == 'modificar') {
+        document.querySelector("#dta_add").style.display = "none";
+        document.querySelector("#dta_mod").style.display = "block";
+        document.querySelector("#dta_del").style.display = "none";
+
+    }
+    if (accion_formulario == 'eliminar') {
+
+        lista_label.forEach(item => {
+
+            item.style.display = "none"
+            
+        });
+    
+        // MUESTRA TODOS LOS INPUTS
+    
+        lista_input.forEach(item => {
+    
+            item.style.display = "none"
+            
+        });
+
+        document.querySelector("#dta_id").style.display = "block";
+        document.querySelector("#l_dta_nombre").style.display = "block";
+        document.querySelector("#dta_nombre").style.display = "block";
+        document.querySelector("#dta_del").style.display = "block";
+        document.querySelector("#l_dta_id").style.display = "block";
         document.querySelector("#dta_add").style.display = "none";
         document.querySelector("#dta_mod").style.display = "none";
-        document.querySelector("#dta_del").style.display = "none";
+        document.querySelector("#dta_del").style.display = "block";
+      
+
+        
     }
-    if (para_que == 'eliminar') {
-        document.querySelector("#curso_añadir").style.display = "none";
-        document.querySelector("#curso_modificar").style.display = "none";
-        document.querySelector("#curso_borrar").style.display = "block";
-    }
-    fMostrarFormularios("#div_cursos");
+    fMostrarFormularios("#formulario_deportistas");
 }
 
 // MOSTRAR ANUNCIOS

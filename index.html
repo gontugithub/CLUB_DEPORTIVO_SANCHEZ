@@ -14,17 +14,17 @@
     <title>CLUB DEPORTIVO SANCHEZ</title>
 </head>
 
-<body>
+<body onload="fMostrarModal('#modal_login')">
     <!-- MODAL LOGIN -->
     <div id="modal_login">
         <div id="titulo_login">Accede a tu cuenta</div>
         <div class="login_datos">Username</div>
         <div class="cajon_input">
-            <input type="text" name="" id="alias_login">
+            <input type="text" name="" id="alias_login" value="admin">
         </div>
         <div class="login_datos">Contraseña</div>
         <div class="cajon_input">
-            <input type="password" name="" id="password_login">
+            <input type="password" name="" id="password_login" value="admin">
         </div>
         <div class="div_boton">
             <div class="boton" onclick="fLogin()">Acceder</div>
@@ -43,8 +43,9 @@
     </nav>
     <section>
         <div id="modal_formularios">
-            <div id="formulario_cuenta" class="formulario">
-                <input type="hidden" id="dta_id">
+            <div id="formulario_deportistas" class="formulario">
+                <label for="dta_id" id="l_dta_id">ID</label>
+                <input type="text" id="dta_id">
                 <!-- <label for="cta_id">ID</label> LO OCULTMAOS UN MOMENTO -->
                 <label for="dta_nombre" id="l_dta_nombre">NOMBRE DEPORTISTA</label>
                 <input type="text" id="dta_nombre">
@@ -55,8 +56,8 @@
     
                 <!-- OCULTAMOS ESTE PARA INSERTAR, SE RELLENA SOLO -->
     
-                <!-- <label for="dta_fcha_alta" id="l_dta_fcha_alta">FECHA ALTA</label>
-                <input type="hidden" id="dta_fcha_alta"> --> 
+                <label for="dta_fcha_alta" id="l_dta_fcha_alta">FECHA ALTA</label>
+                <input type="date" id="dta_fcha_alta">
     
                 <!-- AUNQUE SALGA EN LA PAGINA LA FEHCA dd/mm/yyyy, LUEGO EL VALUE ES yyyy/mm/dd -->
     
@@ -70,54 +71,7 @@
                     <div id="dta_del" onclick="fEjecutarCRUDcuenta('m', 0)">ELIMINAR</div>
                 </div>
             </div>
-    
-    
-    
-    
-    
-    
-    
-            
-            <!-- <div id="crear_deportista">
-                <label>NOMBRE DEPORTISTA</label>
-                <input type="text" id="nombre_deportista" placeholder="NOMBRE DEPORTISTA">
-                <div class="titulo">Password</div>
-                <input type="text" id="password_deportista">
-                <div class="titulo">Teléfono</div>
-                <input type="text" id="telefono_deportista">
-                <div class="titulo">Fecha alta</div>
-                <div class="fecha">
-                    <input type="date" name="" id="fecha_alta_deportista">
-                </div>
-                <div class="titulo">Fecha baja</div>
-                <div class="fecha">
-                    <input type="date" name="" id="fecha_baja_deportista">
-                </div>
-            </div> -->
-            <!-- <div id="crear_anuncio">
-                <div class="titulo">Nombre del nuevo deportista</div>
-                <input type="text" id="texto_anuncio">
-                <div class="titulo">Fecha alta</div>
-                <div class="fecha">
-                    <input type="date" name="" id="fecha_alta_anuncio">
-                </div>
-                <div class="titulo">Fecha baja</div>
-                <div class="fecha">
-                    <input type="date" name="" id="fecha_baja_anuncio">
-                </div>
-            </div> -->
-            <!-- <div id="crear_deporte">
-                <div class="titulo">Nombre del nuevo deporte</div>
-                <input type="text" id="nombre_deporte">
-                <div class="titulo">Fecha alta</div>
-                <div class="fecha">
-                    <input type="date" name="" id="fecha_alta_deporte">
-                </div>
-                <div class="titulo">Fecha baja</div>
-                <div class="fecha">
-                    <input type="date" name="" id="fecha_baja_deporte">
-                </div>
-            </div> -->
+            <div id="formulario_deportes"></div>
     
         </div>
         <!-- MODAL HOME -->
@@ -129,7 +83,7 @@
             <div id="contenedor_modal_deportistas">
 
                 <div class="div_insertar">
-                    <div class="texto_insertar">INSERTAR  <span><i class="fas fa-plus"></i></span></div>
+                    <div class="texto_insertar">INSERTAR  <span onclick="fPrepararFormDeportistas('insertar','','','','','','')"><i class="fas fa-plus"></i></span></div>
                 </div>
                 <div class="div_filtro">
                     <div class="texto_insertar" >FILTRAR  <span onclick="fMostrarDeportistasFiltro()"><i class="fas fa-search"></i></span></div>
@@ -149,7 +103,7 @@
             <div id="contenedor_modal_deportes">
 
                 <div class="div_insertar">
-                    <div class="texto_insertar">INSERTAR  <span><i class="fas fa-plus"></i></span></div>
+                    <div class="texto_insertar">INSERTAR  <span onclick="fPrepararFormDeportistas('insertar', '${item.dta_id}','${item.dta_nombre}','${item.dta_password}','${item.dta_telefono}', '${item.dta_fcha_baja}', '${item.dta_fcha_alta}')"><i class="fas fa-plus"></i></span></div>
                 </div>
                 <div class="div_filtro">
                     <div class="texto_insertar" >FILTRAR  <span onclick="fMostrarDeportesFiltro()"><i class="fas fa-search"></i></span></div>
