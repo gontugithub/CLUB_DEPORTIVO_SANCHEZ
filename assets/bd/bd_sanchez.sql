@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-05-2024 a las 13:39:20
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 08-05-2024 a las 10:39:00
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,63 +26,73 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Borrar_Anuncios` (IN `_id` INT)   delete from anuncios  where anun_id = _id$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Borrar_Anuncios` (IN `_id` INT)  delete from anuncios  where anun_id = _id$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Borrar_Deportes` (IN `_id` INT)   delete from deportes where dte_id = _id$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Borrar_Deportes` (IN `_id` INT)  delete from deportes where dte_id = _id$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Borrar_Deportistas` (IN `_id` INT)   delete from deportistas where dta_id = _id$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Borrar_Deportistas` (IN `_id` INT)  delete from deportistas where dta_id = _id$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Insertar_Anuncios` (IN `_texto` TEXT, IN `_fechaB` DATE)   if _fechaB = "0000-00-00" then
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Insertar_Anuncios` (IN `_texto` TEXT, IN `_fechaB` DATE)  if _fechaB = "0000-00-00" then
 insert into anuncios values (null, _texto, now(), null);
 else
 insert into anuncios values (null, _texto, now(), _fechaB);
 end if$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Insertar_Deportes` (IN `_nombre` VARCHAR(50), IN `_fechaB` DATE)   if _fechaB = "0000-00-00" then
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Insertar_Deportes` (IN `_nombre` VARCHAR(50), IN `_fechaB` DATE)  if _fechaB = "0000-00-00" then
 insert into deportes values (null, _nombre, now(), null);
 else
 insert into deportes values (null, _nombre, now(), _fechaB);
 end if$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Insertar_Deportistas` (IN `_nombre` VARCHAR(50), IN `_password` VARCHAR(50), IN `_telef` VARCHAR(20), IN `_fechaB` DATE)   if _fechaB = "0000-00-00" then
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Insertar_Deportistas` (IN `_nombre` VARCHAR(50), IN `_password` VARCHAR(50), IN `_telef` VARCHAR(20), IN `_fechaB` DATE)  if _fechaB = "0000-00-00" then
 insert into deportistas values (null, _nombre, md5(_password), _telef, now(), null, 0);
 else
 insert into deportistas values (null, _nombre, md5(_password), _telef, now(), _fechaB, 0);
 end if$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Modificar_Anuncios` (IN `_id` INT, IN `_texto` TEXT, IN `_fechaA` DATE, IN `_fechaB` DATE)   if _fechaB = "0000-00-00" then
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Modificar_Anuncios` (IN `_id` INT, IN `_texto` TEXT, IN `_fechaA` DATE, IN `_fechaB` DATE)  if _fechaB = "0000-00-00" then
 update anuncios set anun_texto = _texto, anun_fecha_alta = _fechaA, anun_fecha_baja = null where anun_id = _id;
 else
 update anuncios set anun_texto = _texto, anun_fecha_alta = _fechaA, anun_fecha_baja = _fechaB where anun_id = _id;
 end if$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Modificar_Deportes` (IN `_id` INT, IN `_nombre` VARCHAR(50), IN `_fechaA` DATE, IN `_fechaB` DATE)   if _fechaB = "0000-00-00" then
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Modificar_Deportes` (IN `_id` INT, IN `_nombre` VARCHAR(50), IN `_fechaA` DATE, IN `_fechaB` DATE)  if _fechaB = "0000-00-00" then
 update deportes set dte_nombre = _nombre, dte_fecha_alta = _fechaA, dte_fecha_baja = null where dte_id = _id;
 else
 update deportes set dte_nombre = _nombre, dte_fecha_alta = _fechaA, dte_fecha_baja = _fechaB where dte_id = _id;
 end if$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Modificar_Deportistas` (IN `_id` INT, IN `_nombre` VARCHAR(50), IN `_password` VARCHAR(50), IN `_telef` VARCHAR(20), IN `_fechaA` DATE, IN `_fechaB` DATE)   if _fechaB = "0000-00-00" then
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Modificar_Deportistas` (IN `_id` INT, IN `_nombre` VARCHAR(50), IN `_password` VARCHAR(50), IN `_telef` VARCHAR(20), IN `_fechaA` DATE, IN `_fechaB` DATE)  if _fechaB = "0000-00-00" then
 update deportistas set dta_nombre = _nombre, dta_password = md5(_password), dta_telefono = _telef, dta_fecha_alta = _fechaA, dta_fecha_baja = null where dta_id = _id;
 else
 update deportistas set dta_nombre = _nombre, dta_password = md5(_password), dta_telefono = _telef, dta_fecha_alta = _fechaA, dta_fecha_baja = _fechaB where dta_id = _id;
 end if$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectDeportes` ()   SELECT * FROM deportes$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectAnuncios_Filtro` (IN `_filtro` VARCHAR(50))  SELECT * FROM anuncios as a WHERE 
+a.anun_texto LIKE concat("%",_filtro,"%") OR
+a.anun_fecha_alta LIKE concat("%",_filtro,"%") OR
+a.anun_fecha_baja LIKE concat("%",_filtro,"%")$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectDeportes_ID` (IN `_id` INT)   SELECT * FROM deportes where dte_id = _id$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectDeportes` ()  SELECT * FROM deportes$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectDeportistas` ()   SELECT * FROM deportistas$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectDeportes_Filtro` (IN `_filtro` VARCHAR(50))  SELECT * FROM deportes as d WHERE 
+d.dte_nombre LIKE concat("%",_filtro,"%") OR
+d.dte_fecha_alta LIKE concat("%",_filtro,"%") OR
+d.dte_fecha_baja LIKE concat("%",_filtro,"%")$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectDeportistas_Filtro` (IN `_filtro` VARCHAR(50))   SELECT * FROM deportistas as d WHERE 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectDeportes_ID` (IN `_id` INT)  SELECT * FROM deportes where dte_id = _id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectDeportistas` ()  SELECT * FROM deportistas$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectDeportistas_Filtro` (IN `_filtro` VARCHAR(50))  SELECT * FROM deportistas as d WHERE 
 d.dta_nombre LIKE concat("%",_filtro,"%") OR
 d.dta_telefono LIKE concat("%",_filtro,"%") OR
 d.dta_fecha_alta LIKE concat("%",_filtro,"%") OR
 d.dta_fecha_baja LIKE concat("%",_filtro,"%")$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Ver_Anuncios` ()   SELECT * FROM anuncios$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Ver_Anuncios` ()  SELECT * FROM anuncios$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Ver_Anuncios_ID` (IN `_id` INT)   SELECT * FROM anuncios where anun_id = _id$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Ver_Anuncios_ID` (IN `_id` INT)  SELECT * FROM anuncios where anun_id = _id$$
 
 DELIMITER ;
 
@@ -96,7 +107,7 @@ CREATE TABLE `anuncios` (
   `anun_texto` text NOT NULL,
   `anun_fecha_alta` date DEFAULT NULL,
   `anun_fecha_baja` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `anuncios`
@@ -128,7 +139,7 @@ CREATE TABLE `deportes` (
   `dte_nombre` varchar(50) NOT NULL,
   `dte_fecha_alta` date DEFAULT NULL,
   `dte_fecha_baja` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `deportes`
@@ -183,7 +194,7 @@ CREATE TABLE `deportes_deportistas` (
   `dta_id` int(11) NOT NULL,
   `dd_fecha_alta` date NOT NULL DEFAULT current_timestamp(),
   `dd_fecha_baja` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `deportes_deportistas`
@@ -212,14 +223,14 @@ CREATE TABLE `deportistas` (
   `dta_fecha_alta` date DEFAULT NULL,
   `dta_fecha_baja` date DEFAULT NULL,
   `dta_admin` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `deportistas`
 --
 
 INSERT INTO `deportistas` (`dta_id`, `dta_nombre`, `dta_password`, `dta_telefono`, `dta_fecha_alta`, `dta_fecha_baja`, `dta_admin`) VALUES
-(1, 'admin', '3ba430337eb30f5fd7569451b5dfdf32', '691704600', '2024-05-06', '2026-12-31', 1),
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '691704600', '2024-05-08', NULL, 1),
 (2, 'admin2', '81dc9bdb52d04dc20036dbd8313ed055', '1234', '2024-05-06', '2024-06-06', 0),
 (3, 'Jorge', 'f4a1c8901a3d406f17af67144a3ec71a', '', '2024-05-02', NULL, 0),
 (4, 'Loreto', '279583571681a868005a5d7d3af9e0d4', '', '2024-05-02', NULL, 0),
@@ -242,7 +253,7 @@ CREATE TABLE `facturacion` (
   `fac_dta_id` int(11) NOT NULL,
   `fac_num_deportes` int(11) NOT NULL,
   `fac_importe` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas

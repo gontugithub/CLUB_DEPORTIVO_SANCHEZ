@@ -69,7 +69,7 @@ function fLogin() {
 
     // En el caso de que este logueado
 
-    if (data.datos.length > 0) {
+    if (data.datos.length > 0 && data.datos[0].dta_admin == 1) {
 
         // Ocultamos el login 
         document.querySelector("#modal_login").style.display = 'none';
@@ -102,6 +102,8 @@ function fLogin() {
 
 function fMostrarDeportes(){
 
+    document.querySelector('#filtro_deportes').value = "";
+
     let sql = "Select * FROM deportes ORDER BY dte_nombre ASC";
     const URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql;
 
@@ -110,39 +112,39 @@ function fMostrarDeportes(){
     .then((data) => {
         console.log("DEPORTES", data);
 
-        let html =`<table>`;
-        html+=`<thead>`;
-            html+=`<tr>`;
-                html+=`<th>NOMBRE</th>`;
-                html+=`<th>FECHA ALTA</th>`;
-                html+=`<th>FECHA BAJA</th>`;
-                html+=`<th>ACCIONES ADMIN</th>`;
-            html+=`</tr>`;
-        html+=`</thead>`;
-        html+=`<tbody>`;
+ 
+        let html = "";
+        html += `  <tbody>`
+        html += `   <tr>`
+        html += `    <th>NOMBRE</th>`
+        html += `    <th>FECHA ALTA</th>`
+        html += `    <th>FECHA BAJA</th>`
+        html += `    <th>ACCIONES ADMIN</th>`
+        html += `   </tr>`
 
         data.datos.forEach(item => {
 
-        html+=`<tr>`;
-        html+=`<td>${item.dte_nombre}</td>`;
-        html+=`<td>${item.dte_fecha_alta}</td>`;
-
-        if (item.dte_fecha_baja == null) {
-        html+=`<td> -- </td>`;
-        } else {
-        html+=`<td>${item.dte_fecha_baja}</td>`;
-        }
-        html += `<td><span onclick="fBorrarDeporte('${item.dte_id}')"><i class="fas fa-trash" title="Borrar ${item.dte_nombre}"></i></span></td>`
-        html += `<td><span onclick="fMostrarFormulario('#modificar_deporte')"><i class="fas fa-edit" title="Modificar ${item.dte_nombre}"></i></span></td>`
-        html+=`</tr>`
+           html += `   <tr>`
+           html += `      <td>${item.dte_nombre}</td>`
+           if (item.dte_fecha_alta == null) {
+            html += `      <td>  -  -  </td>` 
+            } else {
+           html += `      <td>${item.dte_fecha_alta}</td>`
+            }
+            if (item.dte_fecha_baja == null) {
+            html += `      <td>  -  -  </td>` 
+            } else {
+           html += `      <td>${item.dte_fecha_baja}</td>`
+            }
+           html += `       <td class="acciones_admin"><span><i class="fas fa-trash"></i>&nbsp;&nbsp;<i class="fas fa-edit"></i></span></td>`
+           html += `   </tr>`
+          
 
         });
 
-        html+=`</tbody>`;
-        html+= `</table>`;
-
-        document.querySelector("#deportes").innerHTML = html;
-
+        html += `  </tbody>`
+        console.log(html)
+        document.querySelector("#tabla_deportes").innerHTML = html;
     })
 
 
@@ -155,7 +157,9 @@ function fMostrarDeportes(){
 
 // MOSTRAR DEPORTISTAS
 
-function fMostrarDeportes(){
+function fMostrarDeportistas(){
+
+    document.querySelector('#filtro_deportistas').value = "";
 
     let sql = "call SelectDeportistas()";
     const URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql;
@@ -210,4 +214,225 @@ function fMostrarDeportes(){
 
 
 
+}
+
+// MOSTRAR ANUNCIOS
+
+function fMostrarAnuncios(){
+
+    document.querySelector('#filtro_anuncios').value = "";
+
+    let sql = "call Ver_Anuncios()";
+    const URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql;
+
+    fetch(URL)
+    .then((response) => response.json())
+    .then((data) => {
+
+        console.log("ANUNCIOS", data);
+
+        let html = "";
+        html += `  <tbody>`
+        html += `   <tr>`
+        html += `    <th>TEXTO</th>`
+        html += `    <th>FECHA ALTA</th>`
+        html += `    <th>FECHA BAJA</th>`
+        html += `    <th>ACCIONES ADMIN</th>`
+        html += `   </tr>`
+
+        data.datos.forEach(item => {
+
+           html += `   <tr>`
+           html += `      <td>${item.anun_texto}</td>`
+
+            if (item.anun_fecha_alta == null) {
+            html += `      <td>  -  -  </td>` 
+            } else {
+            html += `      <td>${item.anun_fecha_alta}</td>` 
+            }
+            if (item.anun_fecha_baja == null) {
+                html += `      <td>  -  -  </td>` 
+                } else {
+                html += `      <td>${item.anun_fecha_baja}</td>` 
+                }
+           html += `       <td class="acciones_admin"><span><i class="fas fa-trash"></i>&nbsp;&nbsp;<i class="fas fa-edit"></i></span></td>`
+           html += `   </tr>`
+          
+
+        });
+
+        html += `  </tbody>`
+        console.log(html)
+        document.querySelector("#tabla_anuncios").innerHTML = html;
+
+    })
+
+    .finally(()=>{
+        fMostrarModal('#modal_anuncios');
+      })
+}
+
+// FILTRO DEPORTES
+
+function fMostrarDeportesFiltro(){
+
+    filtro = document.querySelector('#filtro_deportes').value;
+
+    let sql = `call SelectDeportes_Filtro('${filtro}')`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql;
+
+    fetch(URL)
+    .then((response) => response.json())
+    .then((data) => {
+        console.log("DEPORTES", data);
+
+ 
+        let html = "";
+        html += `  <tbody>`
+        html += `   <tr>`
+        html += `    <th>NOMBRE</th>`
+        html += `    <th>FECHA ALTA</th>`
+        html += `    <th>FECHA BAJA</th>`
+        html += `    <th>ACCIONES ADMIN</th>`
+        html += `   </tr>`
+
+        data.datos.forEach(item => {
+
+           html += `   <tr>`
+           html += `      <td>${item.dte_nombre}</td>`
+           if (item.dte_fecha_alta == null) {
+            html += `      <td>  -  -  </td>` 
+            } else {
+           html += `      <td>${item.dte_fecha_alta}</td>`
+            }
+            if (item.dte_fecha_baja == null) {
+            html += `      <td>  -  -  </td>` 
+            } else {
+           html += `      <td>${item.dte_fecha_baja}</td>`
+            }
+           html += `       <td class="acciones_admin"><span><i class="fas fa-trash"></i>&nbsp;&nbsp;<i class="fas fa-edit"></i></span></td>`
+           html += `   </tr>`
+          
+
+        });
+
+        html += `  </tbody>`
+        console.log(html)
+        document.querySelector("#tabla_deportes").innerHTML = html;
+    })
+
+
+    .finally(()=>{
+      fMostrarModal('#modal_deportes');
+    })
+}
+
+// FILTRO DEPORTISTAS
+
+function fMostrarDeportistasFiltro(){
+
+    filtro = document.querySelector('#filtro_deportistas').value;
+
+    let sql = `call SelectDeportistas_Filtro('${filtro}')`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql;
+
+    fetch(URL)
+    .then((response) => response.json())
+    .then((data) => {
+        console.log("DEPORTISTAS", data);
+
+        let html = "";
+        html += `  <tbody>`
+        html += `   <tr>`
+        html += `    <th>DEPORTISTAS</th>`
+        html += `    <th>CONTRASEÑA</th>`
+        html += `    <th>TELEFONO</th>`
+        html += `    <th>FECHA ALTA</th>`
+        html += `    <th>FECHA BAJA</th>`
+        html += `    <th>ACCIONES ADMIN</th>`
+        html += `   </tr>`
+
+        data.datos.forEach(item => {
+
+           html += `   <tr>`
+           html += `      <td>${item.dta_nombre}</td>`
+           html += `      <td>${item.dta_password}</td>` 
+           html += `      <td>${item.dta_telefono}</td>`
+           html += `      <td>${item.dta_fecha_alta}</td>` 
+
+            if (item.dte_fecha_baja == null) {
+            html += `      <td>  -  -  </td>` 
+            } else {
+            html += `      <td>${item.dta_fecha_baja}</td>` 
+            }
+           html += `       <td class="acciones_admin"><span><i class="fas fa-trash"></i>&nbsp;&nbsp;<i class="fas fa-edit"></i></span></td>`
+           html += `   </tr>`
+          
+
+        });
+
+        html += `  </tbody>`
+        console.log(html)
+        document.querySelector("#tabla_deportistas").innerHTML = html;
+
+    })
+
+    .finally(()=>{
+        fMostrarModal('#modal_deportistas');
+      })
+}
+
+// FILTRO ANUNCIOS
+
+function fMostrarAnunciosFiltro(){
+
+    filtro = document.querySelector('#filtro_anuncios').value;
+
+    let sql = `call SelectAnuncios_Filtro('${filtro}')`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarSelect&sql=" + sql;
+
+    fetch(URL)
+    .then((response) => response.json())
+    .then((data) => {
+        console.log("ANUNCIOS", data);
+
+        let html = "";
+        html += `  <tbody>`
+        html += `   <tr>`
+        html += `    <th>TEXTO</th>`
+        html += `    <th>FECHA ALTA</th>`
+        html += `    <th>FECHA BAJA</th>`
+        html += `    <th>ACCIONES ADMIN</th>`
+        html += `   </tr>`
+
+        data.datos.forEach(item => {
+
+           html += `   <tr>`
+           html += `      <td>${item.anun_texto}</td>`
+
+            if (item.anun_fecha_alta == null) {
+            html += `      <td>  -  -  </td>` 
+            } else {
+            html += `      <td>${item.anun_fecha_alta}</td>` 
+            }
+            if (item.anun_fecha_baja == null) {
+                html += `      <td>  -  -  </td>` 
+                } else {
+                html += `      <td>${item.anun_fecha_baja}</td>` 
+                }
+           html += `       <td class="acciones_admin"><span><i class="fas fa-trash"></i>&nbsp;&nbsp;<i class="fas fa-edit"></i></span></td>`
+           html += `   </tr>`
+          
+
+        });
+
+        html += `  </tbody>`
+        console.log(html)
+        document.querySelector("#tabla_anuncios").innerHTML = html;
+
+    })
+
+    .finally(()=>{
+        fMostrarModal('#modal_anuncios');
+      })
 }

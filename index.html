@@ -81,8 +81,8 @@
     </header>
     <nav>
         <div onclick="fMostrarDeportes()">Deportes</div>
-        <div onclick="fMostrarDeportes()">Deportistas</div>
-        <div onclick="fMostrarModal('#modal_anuncios')">Anuncios</div>
+        <div onclick="fMostrarDeportistas()">Deportistas</div>
+        <div onclick="fMostrarAnuncios()">Anuncios</div>
     </nav>
     <section>
         <!-- MODAL HOME -->
@@ -94,8 +94,11 @@
             <div id="contenedor_modal_deportistas">
 
                 <div class="div_insertar">
-                    <div class="texto_insertar">INSERTAR</div>
-                    <div class="insertar">+</div>
+                    <div class="texto_insertar">INSERTAR  <span><i class="fas fa-plus"></i></span></div>
+                </div>
+                <div class="div_filtro">
+                    <div class="texto_insertar" >FILTRAR  <span onclick="fMostrarDeportistasFiltro()"><i class="fas fa-search"></i></span></div>
+                    <input type="text" id="filtro_deportistas">
                 </div>
                 <div class="div_tabla">
                     <table id="tabla_deportistas">
@@ -105,23 +108,40 @@
             </div>
             
         </div>
+        
         <!-- MODAL DEPORTES -->
-        <div id="modal_deportes">
-            <div id="titulo_insertar_dte">¿Quieres insertar un nuevo deporte?</div>
-            <div class="div_boton">
-                <div class="boton" onclick="fMostrarFormularios('#crear_deporte')">Nuevo deporte</div>
-            </div>
-            <div id="titulo_insertar_dte">Te ayudamos a filtrar</i></div>
-            <div class="cajon_input">
-                <input type="text" name="" id="filtro_deportes">
-            </div>
-            <div id="deportes">
+        <div id="modal_deportes" class="modal">
+            <div id="contenedor_modal_deportes">
+
+                <div class="div_insertar">
+                    <div class="texto_insertar">INSERTAR  <span><i class="fas fa-plus"></i></span></div>
+                </div>
+                <div class="div_filtro">
+                    <div class="texto_insertar" >FILTRAR  <span onclick="fMostrarDeportesFiltro()"><i class="fas fa-search"></i></span></div>
+                    <input type="text" id="filtro_deportes">
+                </div>
+                <div class="div_tabla">
+                    <table id="tabla_deportes">
+                    </table>
+                </div>
 
             </div>
         </div>
         <!-- MODAL ANUNCIOS -->
-        <div id="modal_anuncios">
-            <div id="anuncios"></div>
+        <div id="modal_anuncios" class="modal">
+            <div id="contenedor_modal_anuncios">
+
+                <div class="div_insertar">
+                    <div class="texto_insertar">INSERTAR  <span><i class="fas fa-plus"></i></span></div>
+                </div>
+                <div class="div_filtro">
+                    <div class="texto_insertar" >FILTRAR  <span onclick="fMostrarAnunciosFiltro()"><i class="fas fa-search"></i></span></div>
+                    <input type="text" id="filtro_anuncios">
+                </div>
+                <div class="div_tabla">
+                    <table id="tabla_anuncios">
+                    </table>
+                </div>
         </div>
     </section>
     <footer></footer>
