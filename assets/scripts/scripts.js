@@ -216,6 +216,42 @@ function fMostrarDeportistas(){
 
 }
 
+function fPrepararFormDeportistas(accion_formulario, dta_id, dta_nombre, dta_password, dta_telefono, dta_fcha_baja, dta_fcha_alta) {
+    
+    // GUARDAMOS EL ID EN EL INPUT OCULTO EN EL CASO DE QUE QUERAMOS UTILIZARLO
+    document.querySelector("#dta_id").value = dta_id;
+
+    // SI HUBIERA DADO ERROR VACIAMOS EL MENSJAE DE ERROR ANTERIOR
+    document.querySelector("#dta_error").innerHTML = " ";
+
+
+    //RELLENAMOS LOS CAMPOS CON LOS VALORES
+    document.querySelector("#dta_nombre").value = dta_nombre;
+    document.querySelector("#dta_password").value = dta_password;
+    document.querySelector("#dta_telefono").value = dta_telefono;
+    document.querySelector("#dta_fcha_alta").value = dta_fcha_alta;
+    document.querySelector("#dta_fcha_baja").value = dta_fcha_alta;
+    //Analizar el para_que
+
+    if (para_que == 'insertar') {
+        document.querySelector("#dta_add").style.display = "block";
+        document.querySelector("#dta_mod").style.display = "none";
+        document.querySelector("#dta_del").style.display = "none";
+    }
+
+    if (para_que == 'modificar') {
+        document.querySelector("#dta_add").style.display = "none";
+        document.querySelector("#dta_mod").style.display = "none";
+        document.querySelector("#dta_del").style.display = "none";
+    }
+    if (para_que == 'eliminar') {
+        document.querySelector("#curso_añadir").style.display = "none";
+        document.querySelector("#curso_modificar").style.display = "none";
+        document.querySelector("#curso_borrar").style.display = "block";
+    }
+    fMostrarFormularios("#div_cursos");
+}
+
 // MOSTRAR ANUNCIOS
 
 function fMostrarAnuncios(){

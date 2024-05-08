@@ -9,6 +9,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="assets/styles/style.css">
     <link rel="stylesheet" href="assets/styles/modal.css">
+    <link rel="stylesheet" href="assets/styles/formularios.css">
     <script src="assets/fontawesome-free-5.15.4-web/js/all.js"></script>
     <title>CLUB DEPORTIVO SANCHEZ</title>
 </head>
@@ -30,51 +31,7 @@
         </div>
         <div id="div_error_login"></div>
     </div>
-    <div id="formularios">
-        <div id="crear_deporte">
-            <div class="titulo">Nombre del nuevo deporte</div>
-            <input type="text" id="nombre_deporte">
-            <div class="titulo">Fecha alta</div>
-            <div class="fecha">
-                <input type="date" name="" id="fecha_alta_deporte">
-            </div>
-            <div class="titulo">Fecha baja</div>
-            <div class="fecha">
-                <input type="date" name="" id="fecha_baja_deporte">
-            </div>
-        </div>
-        <div id="crear_deportista">
-            <div class="titulo">Nombre del nuevo deportista</div>
-            <input type="text" id="nombre_deportista">
-            <div class="titulo">Password</div>
-            <input type="text" id="password_deportista">
-            <div class="titulo">Teléfono</div>
-            <input type="text" id="telefono_deportista">
-            <div class="titulo">Fecha alta</div>
-            <div class="fecha">
-                <input type="date" name="" id="fecha_alta_deportista">
-            </div>
-            <div class="titulo">Fecha baja</div>
-            <div class="fecha">
-                <input type="date" name="" id="fecha_baja_deportista">
-            </div>
-        </div>
-        <div id="crear_anuncio">
-            <div class="titulo">Nombre del nuevo deportista</div>
-            <input type="text" id="texto_anuncio">
-            <div class="titulo">Fecha alta</div>
-            <div class="fecha">
-                <input type="date" name="" id="fecha_alta_anuncio">
-            </div>
-            <div class="titulo">Fecha baja</div>
-            <div class="fecha">
-                <input type="date" name="" id="fecha_baja_anuncio">
-            </div>
-        </div>
-        <div id="modificar_deporte"></div>
-        <div id="modificar_deportista"></div>
-        <div id="modificar_deporte"></div>
-    </div>
+    
     <header>
         <div id="logo" onclick="fMostrarModal('#modal_home')"><img src="assets/img/" alt=""></div>
         <div id="login" onclick="fMostrarModal('#modal_login')"><img src="assets/img/usuario.png" alt=""></div>
@@ -85,6 +42,84 @@
         <div onclick="fMostrarAnuncios()">Anuncios</div>
     </nav>
     <section>
+        <div id="modal_formularios">
+            <div id="formulario_cuenta" class="formulario">
+                <input type="hidden" id="dta_id">
+                <!-- <label for="cta_id">ID</label> LO OCULTMAOS UN MOMENTO -->
+                <label for="dta_nombre" id="l_dta_nombre">NOMBRE DEPORTISTA</label>
+                <input type="text" id="dta_nombre">
+                <label for="dta_password" id="l_dta_password">PASSWORD</label>
+                <input type="text" id="dta_password">
+                <label for="dta_telefono" id="l_dta_telefono">TELEFONO</label>
+                <input type="text" id="dta_telefono">
+    
+                <!-- OCULTAMOS ESTE PARA INSERTAR, SE RELLENA SOLO -->
+    
+                <!-- <label for="dta_fcha_alta" id="l_dta_fcha_alta">FECHA ALTA</label>
+                <input type="hidden" id="dta_fcha_alta"> --> 
+    
+                <!-- AUNQUE SALGA EN LA PAGINA LA FEHCA dd/mm/yyyy, LUEGO EL VALUE ES yyyy/mm/dd -->
+    
+                <label for="dta_fcha_baja" id="l_dta_fcha_baja">FECHA BAJA</label>
+                <input type="date" id="dta_fcha_baja">
+                <p id="dta_error" class="frm_error">&nbsp;ERROR</p>
+                <div class="botonera">
+                    <div id="dta_cancelar" onclick="fMostrarModal('#modal_deportistas')">CANCEL</div>
+                    <div id="dta_add" onclick="fEjecutarCRUDcuenta('i', 0)">INSERTAR</div>
+                    <div id="dta_mod" onclick="fEjecutarCRUDcuenta('m', 0)">MODIFICAR</div>
+                    <div id="dta_del" onclick="fEjecutarCRUDcuenta('m', 0)">ELIMINAR</div>
+                </div>
+            </div>
+    
+    
+    
+    
+    
+    
+    
+            
+            <!-- <div id="crear_deportista">
+                <label>NOMBRE DEPORTISTA</label>
+                <input type="text" id="nombre_deportista" placeholder="NOMBRE DEPORTISTA">
+                <div class="titulo">Password</div>
+                <input type="text" id="password_deportista">
+                <div class="titulo">Teléfono</div>
+                <input type="text" id="telefono_deportista">
+                <div class="titulo">Fecha alta</div>
+                <div class="fecha">
+                    <input type="date" name="" id="fecha_alta_deportista">
+                </div>
+                <div class="titulo">Fecha baja</div>
+                <div class="fecha">
+                    <input type="date" name="" id="fecha_baja_deportista">
+                </div>
+            </div> -->
+            <!-- <div id="crear_anuncio">
+                <div class="titulo">Nombre del nuevo deportista</div>
+                <input type="text" id="texto_anuncio">
+                <div class="titulo">Fecha alta</div>
+                <div class="fecha">
+                    <input type="date" name="" id="fecha_alta_anuncio">
+                </div>
+                <div class="titulo">Fecha baja</div>
+                <div class="fecha">
+                    <input type="date" name="" id="fecha_baja_anuncio">
+                </div>
+            </div> -->
+            <!-- <div id="crear_deporte">
+                <div class="titulo">Nombre del nuevo deporte</div>
+                <input type="text" id="nombre_deporte">
+                <div class="titulo">Fecha alta</div>
+                <div class="fecha">
+                    <input type="date" name="" id="fecha_alta_deporte">
+                </div>
+                <div class="titulo">Fecha baja</div>
+                <div class="fecha">
+                    <input type="date" name="" id="fecha_baja_deporte">
+                </div>
+            </div> -->
+    
+        </div>
         <!-- MODAL HOME -->
         <div id="modal_home">
 
