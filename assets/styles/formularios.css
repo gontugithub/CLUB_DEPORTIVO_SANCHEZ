@@ -1,0 +1,71 @@
+#modal_formularios{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: #2a3d68;
+}
+
+
+
+#modal_formularios > div{
+    width: 50%;
+    height: 400px;
+    border: 2px solid #1d2b47;
+    padding: 20px;
+    background-color: #3c5791;
+}
+
+#modal_formularios label {
+    display: block;
+    font-size: 14px;
+    margin: 6px 0px;
+}
+
+#modal_formularios input {
+    padding: 5px;
+    width: 100%;
+    border-radius: 2px;
+    border: none;
+}
+
+#modal_formularios input:focus {
+    outline: none;
+}
+
+.botonera{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    padding: 8px;
+    margin-top: 4px;
+}
+
+.botonera > div{
+   background-color: #2a3d68;
+   border-radius: 2px;
+   padding: 6px;
+   font-size: 14px;
+   color: white;
+   
+}
+
+.botonera > div:hover{
+    background-color: #93a2c0;
+    color: black;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.frm_error{
+    color:rgb(255, 56, 56);
+    text-align: center;
+    margin-top: 8px;
+    font-size: 14px;
+}
