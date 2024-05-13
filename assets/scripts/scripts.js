@@ -4,6 +4,7 @@ let id;
 let idDeporte;
 let dta_id_crud;
 let dte_id_crud;
+let anun_id_crud;
 
 
 // PARA MOSTRAR LOS MODALES
@@ -893,7 +894,7 @@ function fInsertarDeportes(){
 
 // BORRAR ANUNCIOS
 
-function fBorrarDeportes(){
+function fBorrarAnuncios(){
     console.log("ID ANUNCIOS PARA BORRAR:", anun_id_crud);
 
     let sql = `call Borrar_Anuncios('${anun_id_crud}')`;
@@ -954,7 +955,7 @@ function fModificarAnuncios(){
 function fInsertarAnuncios(){
 
     let texto = document.querySelector('#anun_texto').value;
-    let fecha_baja = document.querySelector('#anun_fecha_baja').value;
+    let fecha_baja = document.querySelector('#anun_fcha_baja').value;
 
     
     let sql = `call Insertar_Anuncios('${texto}','${fecha_baja}')`;
