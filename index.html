@@ -71,7 +71,25 @@
                     <div id="dta_del" onclick="fBorrarDeportistas()">ELIMINAR</div>
                 </div>
             </div>
-            <div id="formulario_deportes"></div>
+            <div id="formulario_deportes">
+                <label for="dte_id" id="l_dte_id">ID</label>
+                <input type="text" id="dte_id">
+                <label for="dte_nombre" id="l_dte_nombre">DEPORTE</label>
+                <input type="text" id="dte_nombre">
+                <label for="dte_fcha_alta" id="l_dte_fcha_alta">FECHA ALTA</label>
+                <input type="date" id="dte_fcha_alta">
+                <label for="dte_fcha_baja" id="l_dte_fcha_baja">FECHA BAJA</label>
+                <input type="date" id="dte_fcha_baja">
+                <p id="dte_error" class="frm_error">&nbsp;ERROR</p>
+                <div class="botonera">
+                    <div id="dte_cancelar" onclick="fMostrarModal('#modal_deportes')">CANCEL</div>
+                    <div id="dte_add" onclick="fInsertarDeportistas()">INSERTAR</div>
+                    <div id="dte_mod" onclick="fModificarDeportistas()">MODIFICAR</div>
+                    <div id="dte_del" onclick="fBorrarDeportistas()">ELIMINAR</div>
+
+                </div>
+
+            </div>
     
         </div>
         <!-- MODAL HOME -->
@@ -103,7 +121,7 @@
             <div id="contenedor_modal_deportes">
 
                 <div class="div_insertar">
-                    <div class="texto_insertar">INSERTAR  <span onclick="fPrepararFormDeportistas('insertar', '${item.dta_id}','${item.dta_nombre}','${item.dta_password}','${item.dta_telefono}', '${item.dta_fcha_baja}', '${item.dta_fcha_alta}')"><i class="fas fa-plus"></i></span></div>
+                    <div class="texto_insertar">INSERTAR  <span onclick="fPrepararFormDeportes('insertar','','','','')"><i class="fas fa-plus"></i></span></div>
                 </div>
                 <div class="div_filtro">
                     <div class="texto_insertar" >FILTRAR  <span onclick="fMostrarDeportesFiltro()"><i class="fas fa-search"></i></span></div>
