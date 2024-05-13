@@ -3,6 +3,8 @@
 let id;
 let idDeporte;
 let dta_id_crud;
+let dte_id_crud;
+
 
 // PARA MOSTRAR LOS MODALES
 
@@ -412,6 +414,8 @@ function fPrepararFormDeportes(accion_formulario, dte_id, dte_nombre, dte_fcha_b
     document.querySelector("#l_dte_id").style.display = "none";
     document.querySelector("#dte_id").style.display = "none";
     document.querySelector("#dte_id").value = dte_id;
+
+    dte_id_crud = dte_id;
 
 
     // SI HUBIERA DADO ERROR VACIAMOS EL MENSJAE DE ERROR ANTERIOR
@@ -832,7 +836,7 @@ function fModificarDeportes(){
     let fecha_baja_D = document.querySelector('#dte_fcha_baja').value;
 
     
-    let sql = `call Modificar_Deportistas('${dta_id_crud}','${nombre}','${fecha_alta_D}','${fecha_baja_D}')`;
+    let sql = `call Modificar_Deportes('${dte_id_crud}','${nombre}','${fecha_alta_D}','${fecha_baja_D}')`;
     const URL = "assets/php/servidor.php?peticion=EjecutarUpdateDelete&sql=" + sql;
 
     //Debemos de pedirsela al servidor
@@ -856,13 +860,11 @@ function fModificarDeportes(){
 
 function fInsertarDeportes(){
 
-    // RECOGEMOS EL TITULAR Y EL NIF
-
-    let nombre_deporte_insert = document.querySelector('#dte_nombre').value;
-    let fecha_baja_deporte_insert = document.querySelector('#dte_fcha_baja').value;
+    let nombre = document.querySelector('#dte_nombre').value;
+    let fecha_baja = document.querySelector('#dte_fcha_baja').value;
 
     
-    let sql = `call Insertar_Deportes('${nombre_deporte_insert}','${fecha_baja_deporte_insert}')`;
+    let sql = `call Insertar_Deportes('${nombre}','${fecha_baja}')`;
     const URL = "assets/php/servidor.php?peticion=EjecutarInsert&sql=" + sql;
 
     //Debemos de pedirsela al servidor
@@ -923,11 +925,11 @@ function fModificarAnuncios(){
     // RECOGEMOS LOS DATOS
 
     let texto = document.querySelector('#anun_texto').value;
-    let fecha_alta_A = document.querySelector('#anun_fecha_alta').value;
-    let fecha_baja_A = document.querySelector('#anun_fecha_baja').value;
+    let fecha_alta = document.querySelector('#anun_fcha_alta').value;
+    let fecha_baja = document.querySelector('#anun_fcha_baja').value;
 
     
-    let sql = `call Modificar_Anuncios('${anun_id_crud}','${texto}','${fecha_alta_A}','${fecha_baja_A}')`;
+    let sql = `call Modificar_Anuncios('${anun_id_crud}','${texto}','${fecha_alta}','${fecha_baja}')`;
     const URL = "assets/php/servidor.php?peticion=EjecutarUpdateDelete&sql=" + sql;
 
     //Debemos de pedirsela al servidor
@@ -951,13 +953,11 @@ function fModificarAnuncios(){
 
 function fInsertarAnuncios(){
 
-    // RECOGEMOS EL TITULAR Y EL NIF
-
     let texto = document.querySelector('#anun_texto').value;
-    let fecha_baja_anuncios = document.querySelector('#anun_fecha_baja').value;
+    let fecha_baja = document.querySelector('#anun_fecha_baja').value;
 
     
-    let sql = `call Insertar_Anuncios('${texto}','${fecha_baja_anuncios}')`;
+    let sql = `call Insertar_Anuncios('${texto}','${fecha_baja}')`;
     const URL = "assets/php/servidor.php?peticion=EjecutarInsert&sql=" + sql;
 
     //Debemos de pedirsela al servidor
@@ -972,7 +972,7 @@ function fInsertarAnuncios(){
       .finally(()=>{
 
         document.querySelector('#anun_texto').value="";
-        document.querySelector('#anun_fecha_baja').value="";
+        document.querySelector('#anun_fcha_baja').value="";
 
        fMostrarAnuncios();
 
