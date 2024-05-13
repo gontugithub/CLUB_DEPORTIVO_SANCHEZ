@@ -2,6 +2,7 @@
 
 let id;
 let idDeporte;
+let dta_id_crud;
 
 // PARA MOSTRAR LOS MODALES
 
@@ -278,6 +279,10 @@ function fPrepararFormDeportistas(accion_formulario, dta_id, dta_nombre, dta_pas
     document.querySelector("#l_dta_id").style.display = "none";
     document.querySelector("#dta_id").style.display = "none";
     document.querySelector("#dta_id").value = dta_id;
+
+    // GUARDAMOS EL ID EN LA VARIABLE
+
+    dta_id_crud = dta_id;
 
     // SI HUBIERA DADO ERROR VACIAMOS EL MENSJAE DE ERROR ANTERIOR
     document.querySelector("#dta_error").innerHTML = " ";
@@ -556,4 +561,292 @@ function fMostrarAnunciosFiltro(){
     .finally(()=>{
         fMostrarModal('#modal_anuncios');
       })
+}
+
+/////////////// DEPORTISTAS ///////////////
+
+// BORRAR DEPORTISTAS
+
+function fBorrarDeportistas(){
+    console.log("ID PARA BORRAR:", dta_id_crud);
+
+    let sql = `call Borrar_Deportistas('${dta_id_crud}')`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarUpdateDelete&sql=" + sql;
+
+    //Debemos de pedirsela al servidor
+            
+        fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+  
+          
+      })
+      
+      .finally(()=>{
+  
+        fMostrarDeportistas();
+      })
+}
+
+// MODIFICAR DEPORTISTAS
+
+
+function fModificarDeportistas(){
+
+    console.log("ID PARA MODIFICAR:", dta_id_crud);
+
+
+    // RECOGEMOS LOS DATOS
+
+    let nombre = document.querySelector('#dta_nombre').value;
+    let password = document.querySelector('#dta_password').value;
+    let telefono = document.querySelector('#dta_telefono').value;
+    let fecha_alta = document.querySelector('#dta_fcha_alta').value;
+    let fecha_baja = document.querySelector('#dta_fcha_baja').value;
+
+    
+    let sql = `call Modificar_Deportistas('${dta_id_crud}','${nombre}','${password}','${telefono}','${fecha_alta}','${fecha_baja}')`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarUpdateDelete&sql=" + sql;
+
+    //Debemos de pedirsela al servidor
+            
+        fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+  
+      })
+      
+      .finally(()=>{
+
+        fMostrarDeportistas();
+      })
+
+
+}
+
+// INSERTAR DEPORTISTAS
+
+function fInsertarDeportistas(){
+
+    // RECOGEMOS EL TITULAR Y EL NIF
+
+    let nombre_insert = document.querySelector('#dta_nombre').value;
+    let password_insert = document.querySelector('#dta_password').value;
+    let telefono_insert = document.querySelector('#dta_telefono').value;
+    let fecha_baja_insert = document.querySelector('#dta_fcha_baja').value;
+
+    
+    let sql = `call Insertar_Deportistas('${nombre_insert}','${password_insert}','${telefono_insert}','${fecha_baja_insert}')`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarInsert&sql=" + sql;
+
+    //Debemos de pedirsela al servidor
+            
+        fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+  
+          
+      })
+      
+      .finally(()=>{
+       document.querySelector('#dta_nombre').value="";
+       document.querySelector('#dta_password').value="";
+       document.querySelector('#dta_telefono').value="";
+       document.querySelector('#dta_fcha_baja').value="";
+
+       fMostrarDeportistas();
+
+      })
+
+
+}
+
+/////////////// DEPORTES ///////////////
+
+
+// BORRAR DEPORTES
+
+function fBorrarDeportes(){
+    console.log("ID DEPORTES PARA BORRAR:", dte_id_crud);
+
+    let sql = `call Borrar_Deportes('${dte_id_crud}')`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarUpdateDelete&sql=" + sql;
+
+    //Debemos de pedirsela al servidor
+            
+        fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+  
+          
+      })
+      
+      .finally(()=>{
+  
+        fMostrarDeportes();
+      })
+}
+
+// MODIFICAR DEPORTES
+
+
+function fModificarDeportes(){
+
+    console.log("ID DEPORTES PARA MODIFICAR:", dte_id_crud);
+
+
+    // RECOGEMOS LOS DATOS
+
+    let nombre = document.querySelector('#dte_nombre').value;
+    let fecha_alta_D = document.querySelector('#dte_fcha_alta').value;
+    let fecha_baja_D = document.querySelector('#dte_fcha_baja').value;
+
+    
+    let sql = `call Modificar_Deportistas('${dta_id_crud}','${nombre}','${fecha_alta_D}','${fecha_baja_D}')`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarUpdateDelete&sql=" + sql;
+
+    //Debemos de pedirsela al servidor
+            
+        fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+  
+      })
+      
+      .finally(()=>{
+
+        fMostrarDeportes();
+
+      })
+
+
+}
+
+// INSERTAR DEPORTES
+
+function fInsertarDeportes(){
+
+    // RECOGEMOS EL TITULAR Y EL NIF
+
+    let nombre_deporte_insert = document.querySelector('#dte_nombre').value;
+    let fecha_baja_deporte_insert = document.querySelector('#dte_fcha_baja').value;
+
+    
+    let sql = `call Insertar_Deportes('${nombre_deporte_insert}','${fecha_baja_deporte_insert}')`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarInsert&sql=" + sql;
+
+    //Debemos de pedirsela al servidor
+            
+        fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+  
+          
+      })
+      
+      .finally(()=>{
+
+        document.querySelector('#dte_nombre').value="";
+        document.querySelector('#dte_fcha_baja').value="";
+
+
+       fMostrarDeportes();
+
+      })
+
+
+}
+
+/////////////// ANUNCIOS ///////////////
+
+// BORRAR ANUNCIOS
+
+function fBorrarDeportes(){
+    console.log("ID ANUNCIOS PARA BORRAR:", anun_id_crud);
+
+    let sql = `call Borrar_Anuncios('${anun_id_crud}')`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarUpdateDelete&sql=" + sql;
+
+    //Debemos de pedirsela al servidor
+            
+        fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+  
+          
+      })
+      
+      .finally(()=>{
+  
+        fMostrarAnuncios();
+      })
+}
+
+// MODIFICAR ANUNCIOS
+
+
+function fModificarAnuncios(){
+
+    console.log("ID ANUNCIOS PARA MODIFICAR:", anun_id_crud);
+
+
+    // RECOGEMOS LOS DATOS
+
+    let texto = document.querySelector('#anun_texto').value;
+    let fecha_alta_A = document.querySelector('#anun_fecha_alta').value;
+    let fecha_baja_A = document.querySelector('#anun_fecha_baja').value;
+
+    
+    let sql = `call Modificar_Anuncios('${anun_id_crud}','${texto}','${fecha_alta_A}','${fecha_baja_A}')`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarUpdateDelete&sql=" + sql;
+
+    //Debemos de pedirsela al servidor
+            
+        fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+  
+      })
+      
+      .finally(()=>{
+
+        fMostrarAnuncios();
+
+      })
+
+
+}
+
+// INSERTAR ANUNCIOS
+
+function fInsertarAnuncios(){
+
+    // RECOGEMOS EL TITULAR Y EL NIF
+
+    let texto = document.querySelector('#anun_texto').value;
+    let fecha_baja_anuncios = document.querySelector('#anun_fecha_baja').value;
+
+    
+    let sql = `call Insertar_Anuncios('${texto}','${fecha_baja_anuncios}')`;
+    const URL = "assets/php/servidor.php?peticion=EjecutarInsert&sql=" + sql;
+
+    //Debemos de pedirsela al servidor
+            
+        fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+  
+          
+      })
+      
+      .finally(()=>{
+
+        document.querySelector('#anun_texto').value="";
+        document.querySelector('#anun_fecha_baja').value="";
+
+       fMostrarAnuncios();
+
+      })
+
+
 }
