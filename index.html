@@ -14,7 +14,7 @@
     <title>CLUB DEPORTIVO SANCHEZ</title>
 </head>
 
-<body onload="fMostrarModal('#modal_login')">
+<body onload="fMostrarModal('#modal_formularios')">
     <!-- MODAL LOGIN -->
     <div id="modal_login">
         <div id="contenedor_login">
@@ -95,6 +95,24 @@
                 </div>
 
             </div>
+            <div id="formulario_anuncios">
+                <label for="anun_id" id="l_anun_id">ID</label>
+                <input type="text" id="anun_id">
+                <label for="anun_fcha_alta" id="l_anun_fcha_alta">FECHA ALTA</label>
+                <input type="date" id="anun_fcha_alta">
+                <label for="dte_fcha_baja" id="l_anun_fcha_baja">FECHA BAJA</label>
+                <input type="date" id="anun_fcha_baja">
+                <label for="anun_texto" id="l_anun_texto">TEXTO</label>
+                <textarea id="anun_texto" placeholder="Introduce el anuncio"></textarea> 
+                  <p id="anun_error" class="frm_error">&nbsp;ERROR</p>
+                <div class="botonera">
+                    <div id="anun_cancelar" onclick="fMostrarModal('#modal_anuncios')">CANCEL</div>
+                    <div id="anun_add" onclick="fInsertarDeportistas()">INSERTAR</div>
+                    <div id="anun_mod" onclick="fModificarDeportistas()">MODIFICAR</div>
+                    <div id="anun_del" onclick="fBorrarDeportistas()">ELIMINAR</div>
+
+                </div>         
+            </div>
     
         </div>
         <!-- MODAL HOME -->
@@ -144,7 +162,7 @@
         <div id="modal_anuncios" class="modal">
             <div id="contenedor_modal_anuncios">
                 <div class="div_insertar">
-                    <div class="texto_insertar">INSERTAR  <span><i class="fas fa-plus"></i></span></div>
+                    <div class="texto_insertar">INSERTAR  <span onclick="fPrepararFormAnuncios('insertar', '','', '', '')"><i class="fas fa-plus"></i></span></div>
                 </div>
                 <div class="div_filtro">
                     <div class="texto_insertar" >FILTRAR  <span onclick="fMostrarAnunciosFiltro()"><i class="fas fa-search"></i></span></div>
