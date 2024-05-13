@@ -463,9 +463,9 @@ function fPrepararFormDeportes(accion_formulario, dte_id, dte_nombre, dte_fcha_b
         document.querySelector("#dte_nombre").style.display = "block";
         document.querySelector("#l_dte_nombre").style.display = "block";
         document.querySelector("#l_dte_id").style.display = "block";
-        document.querySelector("#dta_add").style.display = "none";
-        document.querySelector("#dta_mod").style.display = "none";
-        document.querySelector("#dta_del").style.display = "block";
+        document.querySelector("#dte_add").style.display = "none";
+        document.querySelector("#dte_mod").style.display = "none";
+        document.querySelector("#dte_del").style.display = "block";
       
 
         
