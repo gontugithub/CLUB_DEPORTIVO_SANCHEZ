@@ -9,7 +9,7 @@ body{
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 100px 80px 1fr 40px;
+    grid-template-rows: 150px 80px 1fr 40px;
     grid-template-areas: 
     "zh"
     "zn"
@@ -24,37 +24,26 @@ header{
     background-color: white;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex;
 }
 
 /* LOS DIVS DEL HEADER */
 
 #logo{
-    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
 }
 
 #logo > img{
-    width: 200px;
-
+    width: 90px;
+    margin-top: 20px;
 }
 
 #logo:hover{
     cursor: pointer;
-}
-
-#login{
-    padding-right: 40px;
-    display: flex;
-    justify-content: right;
-    width: 30%;
-}
-
-#login:hover{
-    cursor: pointer;
-}
-
-#login > img{
-    width: 35px;
 }
 
 /* NAV */
@@ -71,7 +60,11 @@ nav{
 
 nav > div {
     margin: 20px;
-    font-size: 17px;
+    font-size: 20px;
+} 
+
+nav>div:hover{
+    color: #597EBE;
 }
 
 /*SECTION*/
@@ -82,6 +75,56 @@ section {
     display: flex;
     flex-wrap: wrap;
 
+}
+
+/* MODAL HOME */
+
+#modal_home{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+
+}
+
+#slider{
+    width: 100%;
+    height: 350px;
+    background-image: url(../img/markus-spiske-BfphcCvhl6E-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#logo_home{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 110;
+
+}
+
+#logo_home > img{
+    width: 300px;
+    height: auto;
+    padding-left: 50px;
+}
+
+#titulo_home{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    height: auto;
+    padding-left: 80px;
+    font-size: 50px;
+    font-weight: bolder;
+    margin: 20px;
 }
 
 /* MODAL LOGIN */
@@ -96,6 +139,38 @@ section {
     background-color: white;
     position: absolute;
     top: 0;
+}
+
+#contenedor_login{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 50%;
+}
+#contenedor_logo{
+    display: flex;
+    background-color: #597EBE;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+}
+
+#logo_login_azul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo_login_blanco > img{
+    width: 300px;
+}
+
+#logo_login_azul > img {
+    width: 200px;
 }
 
 #login_formulario{
@@ -159,12 +234,16 @@ section {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: black;
+    background-color: #597EBE;
     color: white;
     border-radius: 10px;
     width: 150px;
     height: 30px;
     margin: 20px;
+}
+
+.boton:hover{
+    background-color: black;
 }
 
 /* MODAL DEPORTES */
@@ -292,7 +371,7 @@ tbody tr:nth-child(even) {
 
 footer{
     grid-area: zf;
-    background-color: black; 
+    background-color: #597EBE; 
     color: white;
     display: flex;
     justify-content: center;
