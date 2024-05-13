@@ -349,6 +349,8 @@ function fPrepararFormDeportistas(accion_formulario, dta_id, dta_nombre, dta_pas
         document.querySelector("#dta_add").style.display = "none";
         document.querySelector("#dta_mod").style.display = "block";
         document.querySelector("#dta_del").style.display = "none";
+        document.querySelector("#l_dta_id").style.display = "block";
+        document.querySelector("#dta_id").style.display = "block";
 
     }
     if (accion_formulario == 'eliminar') {
@@ -442,6 +444,8 @@ function fPrepararFormDeportes(accion_formulario, dte_id, dte_nombre, dte_fcha_b
         document.querySelector("#dte_add").style.display = "none";
         document.querySelector("#dte_mod").style.display = "block";
         document.querySelector("#dte_del").style.display = "none";
+        document.querySelector("#l_dte_id").style.display = "block";
+        document.querySelector("#dte_id").style.display = "block";
 
     }
     if (accion_formulario == 'eliminar') {
@@ -530,6 +534,8 @@ function fPrepararFormAnuncios(accion_formulario, anun_id, anun_texto, anun_fcha
         document.querySelector("#anun_add").style.display = "none";
         document.querySelector("#anun_mod").style.display = "block";
         document.querySelector("#anun_del").style.display = "none";
+        document.querySelector("#l_anun_id").style.display = "block";
+        document.querySelector("#anun_id").style.display = "block";
 
     }
     if (accion_formulario == 'eliminar') {
