@@ -481,6 +481,7 @@ function fPrepararFormAnuncios(accion_formulario, anun_id, anun_texto, anun_fcha
     let lista_input = document.querySelectorAll("#formulario_anuncios > input");
 
 
+    anun_id_crud = anun_id;
    
     // MUESTRA TODOS LOS LABEL
 
@@ -606,7 +607,7 @@ function fMostrarAnuncios(){
            <span onclick="fPrepararFormDeportes('modificar', '${item.anun_id}','${item.anun_texto}','','')">
            <i class="fas fa-edit"></i></span></td>`
 
-            } else if (item.dte_fecha_baja == null){
+            } else if (item.anun_fecha_baja == null){
 
                 html += `      <td>${item.anun_fecha_alta}</td>`
                 html += `      <td>  -  -  </td>` 
@@ -618,7 +619,7 @@ function fMostrarAnuncios(){
                 <i class="fas fa-edit"></i></span></td>`
             
 
-            } else if (item.dte_fecha_alta == null){
+            } else if (item.anun_fecha_alta == null){
 
                 html += `      <td>  -  -  </td>` 
                 html += `      <td>${item.anun_fecha_baja}</td>`
@@ -631,13 +632,13 @@ function fMostrarAnuncios(){
 
             } else{
 
-                html += `      <td>${item.dte_fecha_alta}</td>`
-                html += `      <td>${item.dte_fecha_baja}</td>`
+                html += `      <td>${item.anun_fecha_alta}</td>`
+                html += `      <td>${item.anun_fecha_baja}</td>`
 
                 html += `       <td class="acciones_admin">
-                <span onclick="fPrepararFormAnuncios('eliminar', '${item.dte_id}','${item.dte_nombre}','${item.anun_fecha_baja}','${item.anun_fecha_alta}}')">
+                <span onclick="fPrepararFormAnuncios('eliminar', '${item.anun_id}','${item.anun_texto}','${item.anun_fecha_baja}','${item.anun_fecha_alta}}')">
                 <i class="fas fa-trash"></i></span>&nbsp;&nbsp;
-                <span onclick="fPrepararFormAnuncios('modificar', '${item.dte_id}','${item.dte_nombre}','${item.anun_fecha_baja}','${item.anun_fecha_alta}')">
+                <span onclick="fPrepararFormAnuncios('modificar', '${item.anun_id}','${item.anun_texto}','${item.anun_fecha_baja}','${item.anun_fecha_alta}')">
                 <i class="fas fa-edit"></i></span></td>`
             }
            
