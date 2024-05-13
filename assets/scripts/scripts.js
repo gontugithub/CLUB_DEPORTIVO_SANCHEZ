@@ -117,7 +117,7 @@ function fMostrarDeportes(){
         let html = "";
         html += `  <tbody>`
         html += `   <tr>`
-        html += `    <th>NOMBRE</th>`
+        html += `    <th>DEPORTES</th>`
         html += `    <th>FECHA ALTA</th>`
         html += `    <th>FECHA BAJA</th>`
         html += `    <th>ACCIONES ADMIN</th>`
@@ -125,19 +125,56 @@ function fMostrarDeportes(){
 
         data.datos.forEach(item => {
 
-           html += `   <tr>`
-           html += `      <td>${item.dte_nombre}</td>`
-           if (item.dte_fecha_alta == null) {
-            html += `      <td>  -  -  </td>` 
-            } else {
-           html += `      <td>${item.dte_fecha_alta}</td>`
+            html += `   <tr>`
+            html += `   <td>${item.dte_nombre}</td>`
+
+
+            if (item.dte_fecha_baja == null && item.dte_fecha_alta == null) {
+
+                html += `      <td>  -  -  </td>` 
+                html += `      <td>  -  -  </td>` 
+
+                html += `       <td class="acciones_admin">
+           <span onclick="fPrepararFormDeportes('eliminar', '${item.dte_id}','${item.dte_nombre}','','')">
+           <i class="fas fa-trash"></i></span>&nbsp;&nbsp;
+           <span onclick="fPrepararFormDeportes('modificar', '${item.dte_id}','${item.dte_nombre}','','')">
+           <i class="fas fa-edit"></i></span></td>`
+
+            } else if (item.dte_fecha_baja == null){
+
+                html += `      <td>${item.dte_fecha_alta}</td>`
+                html += `      <td>  -  -  </td>` 
+
+                html += `       <td class="acciones_admin">
+                <span onclick="fPrepararFormDeportes('eliminar', '${item.dte_id}','${item.dte_nombre}','','${item.dte_fecha_alta}')">
+                <i class="fas fa-trash"></i></span>&nbsp;&nbsp;
+                <span onclick="fPrepararFormDeportes('modificar', '${item.dte_id}','${item.dte_nombre}','','${item.dte_fecha_alta}')">
+                <i class="fas fa-edit"></i></span></td>`
+            
+
+            } else if (item.dte_fecha_alta == null){
+
+                html += `      <td>  -  -  </td>` 
+                html += `      <td>${item.dte_fecha_baja}</td>`
+
+                html += `       <td class="acciones_admin">
+                <span onclick="fPrepararFormDeportes('eliminar', '${item.dte_id}','${item.dte_nombre}','${item.dte_fecha_baja}','')">
+                <i class="fas fa-trash"></i></span>&nbsp;&nbsp;
+                <span onclick="fPrepararFormDeportes('modificar', '${item.dte_id}','${item.dte_nombre}','${item.dte_fecha_baja}','')">
+                <i class="fas fa-edit"></i></span></td>`
+
+            } else{
+
+                html += `      <td>${item.dte_fecha_alta}</td>`
+                html += `      <td>${item.dte_fecha_baja}</td>`
+
+                html += `       <td class="acciones_admin">
+                <span onclick="fPrepararFormDeportes('eliminar', '${item.dte_id}','${item.dte_nombre}','${item.dte_fecha_baja}','${item.dte_fecha_alta}')">
+                <i class="fas fa-trash"></i></span>&nbsp;&nbsp;
+                <span onclick="fPrepararFormDeportes('modificar', '${item.dte_id}','${item.dte_nombre}','${item.dte_fecha_baja}','${item.dte_fecha_alta}')">
+                <i class="fas fa-edit"></i></span></td>`
             }
-            if (item.dte_fecha_baja == null) {
-            html += `      <td>  -  -  </td>` 
-            } else {
-           html += `      <td>${item.dte_fecha_baja}</td>`
-            }
-           html += `       <td class="acciones_admin"><span><i class="fas fa-trash"></i>&nbsp;&nbsp;<i class="fas fa-edit"></i></span></td>`
+           
            html += `   </tr>`
           
 
@@ -190,13 +227,13 @@ function fMostrarDeportistas(){
            html += `      <td>${item.dta_telefono}</td>`
            html += `      <td>${item.dta_fecha_alta}</td>` 
 
-           if(item.dte_fecha_baja == null){
+           if(item.dta_fecha_baja == null){
             html += `      <td>  -  -  </td>` 
            } else{
             html += `      <td>${item.dta_fecha_baja}</td>`
            }
 
-            if (item.dte_fecha_baja == null && item.dta_fecha_alta == null) {
+            if (item.dta_fecha_baja == null && item.dta_fecha_alta == null) {
             
             html += `       <td class="acciones_admin">
            <span onclick="fPrepararFormDeportistas('eliminar', '${item.dta_id}','${item.dta_nombre}','${item.dta_password}','${item.dta_telefono}', '', '')">
@@ -204,7 +241,7 @@ function fMostrarDeportistas(){
            <span onclick="fPrepararFormDeportistas('modificar', '${item.dta_id}','${item.dta_nombre}','${item.dta_password}','${item.dta_telefono}', '', '')">
            <i class="fas fa-edit"></i></span></td>`
 
-            } else if (item.dte_fecha_baja == null){
+            } else if (item.dta_fecha_baja == null){
 
                 html += `       <td class="acciones_admin">
            <span onclick="fPrepararFormDeportistas('eliminar', '${item.dta_id}','${item.dta_nombre}','${item.dta_password}','${item.dta_telefono}', '', '${item.dta_fecha_alta}')">
@@ -213,7 +250,7 @@ function fMostrarDeportistas(){
            <i class="fas fa-edit"></i></span></td>`
             
 
-            } else if (item.dte_fecha_alta == null){
+            } else if (item.dta_fecha_alta == null){
 
                 html += `       <td class="acciones_admin">
            <span onclick="fPrepararFormDeportistas('eliminar', '${item.dta_id}','${item.dta_nombre}','${item.dta_password}','${item.dta_telefono}', '${item.dta_fecha_baja}', '')">
@@ -341,6 +378,99 @@ function fPrepararFormDeportistas(accion_formulario, dta_id, dta_nombre, dta_pas
     }
     fMostrarFormularios("#formulario_deportistas");
 }
+
+
+function fPrepararFormDeportes(accion_formulario, dte_id, dte_nombre, dte_fcha_baja, dte_fcha_alta) {
+
+    console.log(dte_fcha_baja)
+    console.log(dte_fcha_alta)
+
+    let lista_label = document.querySelectorAll("#formulario_deportes > label");
+    let lista_input = document.querySelectorAll("#formulario_deportes > input");
+
+    console.log(lista_input)
+    console.log(lista_label)
+
+    // MUESTRA TODOS LOS LABEL
+
+    lista_label.forEach(item => {
+
+        item.style.display = "block"
+        
+    });
+
+    // MUESTRA TODOS LOS INPUTS
+
+    lista_input.forEach(item => {
+
+        item.style.display = "block"
+        
+    });
+
+
+    // GUARDAMOS EL ID EN EL INPUT OCULTO EN EL CASO DE QUE QUERAMOS UTILIZARLO
+    document.querySelector("#l_dte_id").style.display = "none";
+    document.querySelector("#dte_id").style.display = "none";
+    document.querySelector("#dte_id").value = dte_id;
+
+
+    // SI HUBIERA DADO ERROR VACIAMOS EL MENSJAE DE ERROR ANTERIOR
+    document.querySelector("#dte_error").innerHTML = " ";
+
+
+    //RELLENAMOS LOS CAMPOS CON LOS VALORES
+    document.querySelector("#dte_nombre").value = dte_nombre;
+    document.querySelector("#dte_fcha_baja").value = dte_fcha_baja;
+    document.querySelector("#dte_fcha_alta").value = dte_fcha_alta;
+   
+    //Analizar el para_que
+
+    if (accion_formulario == 'insertar') {
+        document.querySelector("#dte_add").style.display = "block";
+        document.querySelector("#dte_mod").style.display = "none";
+        document.querySelector("#dte_del").style.display = "none";
+        document.querySelector("#l_dte_fcha_alta").style.display = "none";
+        document.querySelector("#dte_fcha_alta").style.display = "none";
+    }
+
+    if (accion_formulario == 'modificar') {
+        document.querySelector("#dte_add").style.display = "none";
+        document.querySelector("#dte_mod").style.display = "block";
+        document.querySelector("#dte_del").style.display = "none";
+
+    }
+    if (accion_formulario == 'eliminar') {
+
+        lista_label.forEach(item => {
+
+            item.style.display = "none"
+            
+        });
+    
+        // MUESTRA TODOS LOS INPUTS
+    
+        lista_input.forEach(item => {
+    
+            item.style.display = "none"
+            
+        });
+
+        document.querySelector("#dte_id").style.display = "block";
+        document.querySelector("#dte_nombre").style.display = "block";
+        document.querySelector("#l_dte_nombre").style.display = "block";
+        document.querySelector("#l_dte_id").style.display = "block";
+        document.querySelector("#dta_add").style.display = "none";
+        document.querySelector("#dta_mod").style.display = "none";
+        document.querySelector("#dta_del").style.display = "block";
+      
+
+        
+    }
+    fMostrarFormularios("#formulario_deportes");
+}
+
+
+
 
 // MOSTRAR ANUNCIOS
 
